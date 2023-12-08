@@ -1,6 +1,17 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c,csharp,vs,visualstudio,visualstudiocode,java,maven,c++,cmake,eclipse,netbeans
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,csharp,vs,visualstudio,visualstudiocode,java,maven,c++,cmake,eclipse,netbeans
 
+
+#Publish_win && build_win && docs && test txt file
+publish
+docs
+/build_win
+/test1.txt
+/test2.txt
+/test3.txt
+/test4.txt
+/test5.txt
+
 ### C ###
 # Prerequisites
 *.d
@@ -959,16 +970,3 @@ coverage*[.json, .xml, .info]
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c,csharp,vs,visualstudio,visualstudiocode,java,maven,c++,cmake,eclipse,netbeans
-
-/docs/doxygen
-/docs/assets/
-/docs/coveragereport
-/docs/coverxygen
-/site
-/calculator/cobertura.xml
-/cobertura.xml
-*.orig
-*.cov
-*.csv
-/build_win
-/calculatorapp_unit_win_cobertura.xml
