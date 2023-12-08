@@ -1,13 +1,13 @@
 # aka5g/CMakeLists.txt
 set(ROOT src)
-set(APPNAME calculatorapp)
+set(APPNAME car_maintenance_app)
 
 message(STATUS "[${ROOT}/${APPNAME}] Module Processing...")
 
 # Collect files without having to explicitly list each header and source file
 file(GLOB APP_HEADERS
-  "${CMAKE_CURRENT_SOURCE_DIR}/header/*.h"
-  "${CMAKE_CURRENT_SOURCE_DIR}/header/*.hpp")
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp")
 
 file(GLOB APP_SOURCES
   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
@@ -21,12 +21,9 @@ source_group("src" FILES ${APP_SOURCES})
 add_executable(${APPNAME} ${APP_HEADERS} ${APP_SOURCES}) # for dynamic library use SHARED
 
 target_include_directories(${APPNAME} PUBLIC
-						   ${CMAKE_CURRENT_SOURCE_DIR}/../utility/header
-						   ${CMAKE_CURRENT_SOURCE_DIR}/../calculator/header
-						   ${CMAKE_CURRENT_SOURCE_DIR}/header)
+						   ${CMAKE_CURRENT_SOURCE_DIR}/../car_maintenance_lib/include
+						   ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Add any dependencies or compile options specific to lock6g
-target_link_libraries(${APPNAME} PRIVATE calculator utility)
 
 install(TARGETS ${APPNAME}
         LIBRARY DESTINATION lib

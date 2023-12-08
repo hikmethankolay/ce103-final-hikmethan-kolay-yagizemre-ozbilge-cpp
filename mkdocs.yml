@@ -1,11 +1,11 @@
 # Project information
-site_name: 'CALCULATOR APP'
+site_name: 'Car Maintenance App'
 docs_dir: docs  # Where to find the English markdown files
 site_dir: site  # Where to put the English HTML files
 site_author: 'Asst. Prof. Dr. Uğur CORUH'
 site_url: 'https://coruhtech.github.io/6g-lock-model-cpp/'
 site_description: >-
-    CALCULATOR APP
+    Car Maintenance App
 
 # Repository
 repo_name: 'GitHub'

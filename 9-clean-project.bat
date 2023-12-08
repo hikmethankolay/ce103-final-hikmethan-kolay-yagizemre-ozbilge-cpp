@@ -22,6 +22,13 @@ del /Q /F "simulation_tests_unit_win_cobertura.xml"
 
 del /Q /F "CMakePresets.json"
 
+del test1.txt
+del test2.txt
+del test3.txt
+del test4.txt
+del test5.txt
+del *_records.txt
+
 echo Delete and Create Required Folders and Their Files.
 rd /S /Q ".vs"
 rd /S /Q ".vscode"
@@ -57,3 +64,4 @@ rd /S /Q "docs\testresultslinux"
 
 echo Delete the "site" folder and its contents
 rd /S /Q "site"
+

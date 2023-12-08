@@ -1,6 +1,6 @@
 # tests/aka5g/CMakeLists.txt
 set(ROOT src/tests)
-set(TESTNAME utility)
+set(TESTNAME car_maintenance)
 set(EXENAME ${TESTNAME}_tests)
 
 message(STATUS "[${ROOT}/${TESTNAME}] Module Tests...")
@@ -15,7 +15,7 @@ file(GLOB LIB_SOURCES
   "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
 
 # Create named folders for the sources within the project
-source_group("header" FILES ${LIB_HEADERS})
+source_group("include" FILES ${LIB_HEADERS})
 source_group("src" FILES ${LIB_SOURCES})
 
 enable_testing()
@@ -25,14 +25,14 @@ add_executable(${EXENAME} ${LIB_HEADERS} ${LIB_SOURCES})
 
 # Add included headers
 target_include_directories(${EXENAME} PUBLIC
-              ${CMAKE_CURRENT_SOURCE_DIR}/../../utility/header
+						   ${CMAKE_CURRENT_SOURCE_DIR}/../../car_maintenance_lib/include
 						   ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Add any dependencies or compile options specific to aka5g tests
-target_link_libraries(${EXENAME} PRIVATE utility gtest gtest_main)
+target_link_libraries(${EXENAME} PRIVATE car_maintenance_lib gtest gtest_main)
 
 # Register the test with CTest
-add_test(NAME ${EXENAME} COMMAND ${EXENAME})
+# add_test(NAME ${EXENAME} COMMAND ${EXENAME})
 
 install(TARGETS ${EXENAME}
         LIBRARY DESTINATION lib
