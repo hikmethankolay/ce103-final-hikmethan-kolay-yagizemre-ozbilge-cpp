@@ -14,7 +14,7 @@ file(GLOB APP_SOURCES
   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc")
 
 # Create named folders for the sources within the project
-source_group("header" FILES ${APP_HEADERS})
+source_group("include" FILES ${APP_HEADERS})
 source_group("src" FILES ${APP_SOURCES})
 
 # Set Properties->General->Configuration Type to Dynamic Library (.dll/.so/.dylib)

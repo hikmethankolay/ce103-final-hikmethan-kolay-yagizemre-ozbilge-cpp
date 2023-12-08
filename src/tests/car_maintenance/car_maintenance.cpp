@@ -1,4 +1,4 @@
-#define ENABLE_TEST  // Uncomment this line to enable the Calculator tests
+#define ENABLE_TEST  // Uncomment this line to enable the tests
 
 #include "../../tests/googletest/googletest/include/gtest/gtest.h"
 #include "../../car_maintenance_lib/include/car_maintenance_lib.h"  // Adjust this include path based on your project structure
