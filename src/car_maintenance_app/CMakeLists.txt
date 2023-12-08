@@ -24,6 +24,8 @@ target_include_directories(${APPNAME} PUBLIC
 						   ${CMAKE_CURRENT_SOURCE_DIR}/../car_maintenance_lib/include
 						   ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# Add any dependencies or compile options specific to lock6g
+target_link_libraries(${APPNAME} PRIVATE car_maintenance_lib)
 
 install(TARGETS ${APPNAME}
         LIBRARY DESTINATION lib
