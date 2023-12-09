@@ -1,3 +1,8 @@
+/**
+ * @file car_maintenance_lib.cpp
+ * @brief Implementation file for car maintenance library functions.
+ */
+
 #include "../include/car_maintenance_lib.h"
 #include <iostream>
 #include <fstream>
@@ -6,44 +11,71 @@
 #include <codecvt>
 using namespace std;
 
-fstream myFile;
+fstream myFile;  /**< File stream object for file operations. */
 
+/**
+ * @brief Writes the specified text to a binary file after prepending "0-)" and appending a newline.
+ *
+ * This function opens the specified binary file, deletes its contents, and writes the modified text in binary format.
+ *
+ * @param file_name The name of the file to write to.
+ * @param text The text to write to the file.
+ * @return 0 on success.
+ */
 int file_write(string file_name, string text) {
   text = "0-)" + text + "\r" + "\n";
-  myFile.open(file_name, ios::out | ios::binary | ios::trunc); //Opens file with output tag
-  myFile.write(text.c_str(), text.length()); //Deletes everything inside file and writes text variable
+  myFile.open(file_name, ios::out | ios::binary | ios::trunc); // Opens file with output tag
+  myFile.write(text.c_str(), text.length()); // Deletes everything inside file and writes text variable
   myFile.close();
   return 0;
 }
 
+/**
+ * @brief Reads the contents of a binary file and returns them as a string.
+ *
+ * This function opens the specified binary file, reads its contents, and returns them as a string.
+ *
+ * @param file_name The name of the file to read from.
+ * @return The contents of the file as a string.
+ */
 string file_read(string file_name) {
   string line;
-  myFile.open(file_name, ios::in | ios::binary);//Opens file with input tag
+  myFile.open(file_name, ios::in | ios::binary); // Opens file with input tag
 
   if (myFile.is_open()) {
     char i;
 
-    while (myFile.get(i)) { // Takes all line one by one and prints them to console
+    while (myFile.get(i)) { // Takes all lines one by one and prints them to the console
       line = line + i;
     }
 
     cout << line;
     myFile.close();
   } else {
-    cout << "File operation failed,There is no record\n";
+    cout << "File operation failed, There is no record\n";
     return "-1";
   }
 
-  return line; //This is a variable for tests to run since function needs to return someting for them to run properly
+  return line; // This is a variable for tests to run since the function needs to return something for them to run properly
 }
 
-int file_append(string file_name,string text) {
-  myFile.open(file_name, ios::in | ios::binary);//Opens file with input tag
+/**
+ * @brief Appends the specified text to a binary file, incrementing the line number.
+ *
+ * This function opens the specified binary file, finds the last line, increments its line number,
+ * and appends the modified text in binary format.
+ *
+ * @param file_name The name of the file to append to.
+ * @param text The text to append to the file.
+ * @return 0 on success.
+ */
+int file_append(string file_name, string text) {
+  myFile.open(file_name, ios::in | ios::binary); // Opens file with input tag
   string lastLine;
   string currentLine;
   char i;
 
-  if (myFile.is_open()) { // Update lastLine for each line and finds actual last line
+  if (myFile.is_open()) {
     while (myFile.get(i)) {
       if (i == '\n') {
         currentLine = currentLine + i;
@@ -61,25 +93,34 @@ int file_append(string file_name,string text) {
     return -1;
   }
 
-  size_t pos = lastLine.find("-)"); // Finds location of "-)" inn last line
-  int lineNumber = stoi(lastLine.substr(0, pos))+1; //Finds number for the appended line
+  size_t pos = lastLine.find("-)"); // Finds the location of "-)" in the last line
+  int lineNumber = stoi(lastLine.substr(0, pos)) + 1; // Finds the number for the appended line
   text = to_string(lineNumber) + "-)" + text + "\r" + "\n";
-  myFile.open(file_name, ios::app | ios::binary);//Opens file with append tag
-  myFile.write(text.c_str(), text.length()); //Appends text with its line number
+  myFile.open(file_name, ios::app | ios::binary); // Opens file with append tag
+  myFile.write(text.c_str(), text.length()); // Appends text with its line number
   myFile.close();
   return 0;
 }
 
-
+/**
+ * @brief Edits the specified line in a binary file with new text.
+ *
+ * This function opens the specified binary file, finds the line with the given line number, and replaces it with the new text.
+ *
+ * @param file_name The name of the file to edit.
+ * @param line_number_to_edit The line number to edit.
+ * @param new_line The new text to replace the existing line.
+ * @return 0 on success.
+ */
 int file_edit(string file_name, int line_number_to_edit, string new_line) {
-  const int max_line_count = 100; // An variable for array
+  const int max_line_count = 100; // A variable for array
   char i;
-  myFile.open(file_name, ios::in | ios::binary);//Opens file with read tag
+  myFile.open(file_name, ios::in | ios::binary); // Opens file with read tag
 
   if (myFile.is_open()) {
-    string lines[max_line_count]; // A array to to store lines
+    string lines[max_line_count]; // An array to store lines
     string line;
-    int line_count = 0; // A variable for if statement to check if the line that user wants to edit exist
+    int line_count = 0; // A variable for an if statement to check if the line that the user wants to edit exists
 
     while (myFile.get(i)) {
       if (i == '\n') {
@@ -95,7 +136,7 @@ int file_edit(string file_name, int line_number_to_edit, string new_line) {
     myFile.close();
 
     if (line_number_to_edit > 0 && line_number_to_edit <= line_count) {
-      lines[line_number_to_edit] = to_string(line_number_to_edit) + "-)" + new_line + "\r" + "\n"; // Changes a member of Lines array to new line with its line number
+      lines[line_number_to_edit] = to_string(line_number_to_edit) + "-)" + new_line + "\r" + "\n"; // Changes a member of Lines array to a new line with its line number
     } else {
       cout << "You can only edit existing lines\n";
       return -1;
@@ -103,16 +144,16 @@ int file_edit(string file_name, int line_number_to_edit, string new_line) {
 
     myFile.open(file_name, ios::out | ios::binary); // Opens file in write mode
 
-    for (const string &updated_lines : lines) {  // writes every member of lines array to file
+    for (const string &updated_lines : lines) {  // Writes every member of the lines array to the file
       if (updated_lines == "") {
-        break; // Stops if there is nothing on next line since arrays have fixed slots inside them from start
+        break; // Stops if there is nothing on the next line since arrays have fixed slots inside them from the start
       }
 
       myFile.write(updated_lines.c_str(), updated_lines.length());
     }
 
     myFile.close();
-    cout << "\nData succesfully edited\n\n";
+    cout << "\nData successfully edited\n\n";
     return 0;
   } else {
     cout << "File operation failed" << endl;
@@ -120,20 +161,29 @@ int file_edit(string file_name, int line_number_to_edit, string new_line) {
   }
 }
 
+/**
+ * @brief Deletes the specified line in a binary file.
+ *
+ * This function opens the specified binary file, finds the line with the given line number, and deletes it.
+ *
+ * @param file_name The name of the file to delete the line from.
+ * @param line_number_to_delete The line number to delete.
+ * @return 0 on success.
+ */
 int file_line_delete(string file_name, int line_number_to_delete) {
-  const int max_line_count = 100; // An variable for array to work properly
+  const int max_line_count = 100; // A variable for an array to work properly
   char i;
-  myFile.open(file_name, ios::in | ios::binary);// Opens file in read mode
+  myFile.open(file_name, ios::in | ios::binary); // Opens file in read mode
 
   if (myFile.is_open()) {
-    string lines[max_line_count]; // A array to to store lines
+    string lines[max_line_count]; // An array to store lines
     string line;
-    int line_count = 0; // A variable for if statement to check if there is a line that user wants to edit
+    int line_count = 0; // A variable for an if statement to check if there is a line that the user wants to delete
 
-    while (myFile.get(i)) {// gets lines one by one and assaign them to line variable
+    while (myFile.get(i)) {// Gets lines one by one and assigns them to the line variable
       if (i == '\n') {
         line = line + i;
-        lines[line_count++] = line; // Adds line variable to lines array and increase line_count after operation
+        lines[line_count++] = line; // Adds the line variable to the lines array and increases line_count after the operation
         line = "";
         continue;
       }
@@ -147,7 +197,7 @@ int file_line_delete(string file_name, int line_number_to_delete) {
         lines[i] = lines[i + 1];
       }
 
-      lines[line_count - 1] = ""; // clears last element of lines so same thing wouldn't write to file twice
+      lines[line_count - 1] = ""; // Clears the last element of lines so the same thing wouldn't write to the file twice
     } else {
       cout << "You can only erase existing lines" << endl;
       myFile.close();
@@ -155,17 +205,17 @@ int file_line_delete(string file_name, int line_number_to_delete) {
     }
 
     myFile.close();
-    myFile.open(file_name, ios::out | ios::binary); // Opens file in write mode
+    myFile.open(file_name, ios::out | ios::binary); // Opens the file in write mode
 
     for (const string &updated_lines : lines) {
       if (updated_lines == "") {
-        break; // Stops if there is nothing on next line since arrays have fixed slots inside them from start
+        break; // Stops if there is nothing on the next line since arrays have fixed slots inside them from the start
       }
 
-      size_t pos = updated_lines.find("-)"); // Finds postion of "-)"
-      int lineNumber = stoi(updated_lines.substr(0, pos)); // Finds each lines line number
+      size_t pos = updated_lines.find("-)"); // Finds the position of "-)"
+      int lineNumber = stoi(updated_lines.substr(0, pos)); // Finds each line's line number
 
-      if (lineNumber > line_number_to_delete) { // decrase a lines line number if its bigger than deleted lines line number
+      if (lineNumber > line_number_to_delete) { // Decreases a line's line number if it's bigger than the deleted line's line number
         string updated_line_with_new_number = to_string(lineNumber - 1) + updated_lines.substr(pos);
         myFile.write(updated_line_with_new_number.c_str(), updated_line_with_new_number.length());
       } else {
@@ -173,7 +223,7 @@ int file_line_delete(string file_name, int line_number_to_delete) {
       }
     }
 
-    cout << "\nData succesfully deleted\n\n";
+    cout << "\nData successfully deleted\n\n";
     myFile.close();
     return 0;
   } else {
