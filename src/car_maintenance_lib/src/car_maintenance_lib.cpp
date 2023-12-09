@@ -9,14 +9,9 @@ fstream myFile;
 
 int file_write(string file_name, string text) {
   myFile.open(file_name, ios::out); //Opens file with output tag
-
-  if (myFile.is_open()) {
-    myFile << "0-)" << text << "\n"; //Deletes everting inside file and inserts Text with "0-)" line number
-    myFile.close();
-    return 0;
-  } else {
-    return -1;
-  }
+  myFile << "0-)" << text << "\n"; //Deletes everting inside file and inserts Text with "0-)" line number
+  myFile.close();
+  return 0;
 }
 
 int file_append(string file_name,string text) {
@@ -38,15 +33,9 @@ int file_append(string file_name,string text) {
   size_t pos = lastLine.find("-)"); // Finds location of "-)" inn last line
   int lineNumber = stoi(lastLine.substr(0, pos))+1; //Finds number for the appended line
   myFile.open(file_name, ios::app);//Opens file with append tag
-
-  if (myFile.is_open()) {
-    myFile << lineNumber << "-)" << text << "\n"; //Appends text with its line number
-    myFile.close();
-    return 0;
-  } else {
-    cout << "File operation failed\n";
-    return -1;
-  }
+  myFile << lineNumber << "-)" << text << "\n"; //Appends text with its line number
+  myFile.close();
+  return 0;
 }
 
 string file_read(string file_name) {

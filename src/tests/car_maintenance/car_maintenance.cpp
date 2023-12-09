@@ -1,4 +1,4 @@
-#define ENABLE_TEST  // Uncomment this line to enable the tests
+#define ENABLE_TESTS  // Uncomment this line to enable the tests
 
 #include "../../tests/googletest/googletest/include/gtest/gtest.h"
 #include "../../car_maintenance_lib/include/car_maintenance_lib.h"  // Adjust this include path based on your project structure
@@ -64,8 +64,17 @@ TEST_F(CarTest, TestFileEditFail) {
   ASSERT_EQ(fail, file_edit("test3f.txt", 3, editString));
 }
 
+TEST_F(CarTest, TestFileEditFail_2) {
+  string editString = "TEXT STRING EDIT";
+  ASSERT_EQ(fail, file_edit("test3.txt", 100, editString));
+}
+
 TEST_F(CarTest, TestFileDeleteFail) {
   ASSERT_EQ(fail, file_line_delete("test4f.txt", 2));
+}
+
+TEST_F(CarTest, TestFileDeleteFail_2) {
+  ASSERT_EQ(fail, file_line_delete("test4.txt", 100));
 }
 
 int main(int argc, char **argv) {
