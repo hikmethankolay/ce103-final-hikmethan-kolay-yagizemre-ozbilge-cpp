@@ -22,12 +22,12 @@ del /Q /F "simulation_tests_unit_win_cobertura.xml"
 
 del /Q /F "CMakePresets.json"
 
-del test1.txt
-del test2.txt
-del test3.txt
-del test4.txt
-del test5.txt
-del *_records.txt
+del test1.bin
+del test2.bin
+del test3.bin
+del test4.bin
+del test5.bin
+del *_records.bin
 
 echo Delete and Create Required Folders and Their Files.
 rd /S /Q ".vs"

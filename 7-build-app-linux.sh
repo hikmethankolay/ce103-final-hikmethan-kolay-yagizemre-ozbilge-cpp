@@ -33,39 +33,39 @@ mkdir "docs/doxygenliblinux"
 mkdir "docs/doxygentestlinux"
 mkdir "docs/testresultslinux"
 
-echo "create txt files for unit test"
+echo "create bin files for unit test"
 
-echo "0-)TEXT STRING0" > test1.txt
-echo "1-)TEXT STRING1" >> test1.txt
-echo "2-)TEXT STRING2" >> test1.txt
-echo "3-)TEXT STRING3" >> test1.txt
-echo "4-)TEXT STRING4" >> test1.txt
+echo "0-)TEXT STRING0" > test1.bin
+echo "1-)TEXT STRING1" >> test1.bin
+echo "2-)TEXT STRING2" >> test1.bin
+echo "3-)TEXT STRING3" >> test1.bin
+echo "4-)TEXT STRING4" >> test1.bin
 
-echo "0-)TEXT STRING0" > test2.txt
-echo "1-)TEXT STRING1" >> test2.txt
-echo "2-)TEXT STRING2" >> test2.txt
-echo "3-)TEXT STRING3" >> test2.txt
-echo "4-)TEXT STRING4" >> test2.txt
+echo "0-)TEXT STRING0" > test2.bin
+echo "1-)TEXT STRING1" >> test2.bin
+echo "2-)TEXT STRING2" >> test2.bin
+echo "3-)TEXT STRING3" >> test2.bin
+echo "4-)TEXT STRING4" >> test2.bin
 
-echo "0-)TEXT STRING0" > test3.txt
-echo "1-)TEXT STRING1" >> test3.txt
-echo "2-)TEXT STRING2" >> test3.txt
-echo "3-)TEXT STRING3" >> test3.txt
-echo "4-)TEXT STRING4" >> test3.txt
+echo "0-)TEXT STRING0" > test3.bin
+echo "1-)TEXT STRING1" >> test3.bin
+echo "2-)TEXT STRING2" >> test3.bin
+echo "3-)TEXT STRING3" >> test3.bin
+echo "4-)TEXT STRING4" >> test3.bin
 
-echo "0-)TEXT STRING0" > test4.txt
-echo "1-)TEXT STRING1" >> test4.txt
-echo "2-)TEXT STRING2" >> test4.txt
-echo "3-)TEXT STRING3" >> test4.txt
-echo "4-)TEXT STRING4" >> test4.txt
+echo "0-)TEXT STRING0" > test4.bin
+echo "1-)TEXT STRING1" >> test4.bin
+echo "2-)TEXT STRING2" >> test4.bin
+echo "3-)TEXT STRING3" >> test4.bin
+echo "4-)TEXT STRING4" >> test4.bin
 
-echo "0-)TEXT STRING0" > test5.txt
-echo "1-)TEXT STRING1" >> test5.txt
-echo "2-)TEXT STRING2" >> test5.txt
-echo "3-)TEXT STRING3" >> test5.txt
-echo "4-)TEXT STRING4" >> test5.txt
+echo "0-)TEXT STRING0" > test5.bin
+echo "1-)TEXT STRING1" >> test5.bin
+echo "2-)TEXT STRING2" >> test5.bin
+echo "3-)TEXT STRING3" >> test5.bin
+echo "4-)TEXT STRING4" >> test5.bin
 
-echo "txt files created successfully"
+echo "bin files created successfully"
 
 echo "Delete the 'site' folder and its contents"
 #rm -rf "site"
@@ -107,11 +107,11 @@ cmake --build build_linux --config Release -j4
 cmake --install build_linux --strip
 echo "Test CMAKE"
 
-cp test1.txt build_linux/src/tests/car_maintenance
-cp test2.txt build_linux/src/tests/car_maintenance
-cp test3.txt build_linux/src/tests/car_maintenance
-cp test4.txt build_linux/src/tests/car_maintenance
-cp test5.txt build_linux/src/tests/car_maintenance
+cp test1.bin build_linux/src/tests/car_maintenance
+cp test2.bin build_linux/src/tests/car_maintenance
+cp test3.bin build_linux/src/tests/car_maintenance
+cp test4.bin build_linux/src/tests/car_maintenance
+cp test5.bin build_linux/src/tests/car_maintenance
 
 cd build_linux
 # ctest -C Debug -j4 --output-on-failure --output-log test_results_linux.log
@@ -159,11 +159,11 @@ tar -czvf release_linux/linux-release-binaries.tar.gz -C build_linux/build/Relea
 echo "Package Publish Debug Linux Binaries"
 mkdir -p build_linux/build/Debug
 cp -R src/car_maintenance_lib/include build_linux/build/Debug
-cp test1.txt publish_linux/bin
-cp test2.txt publish_linux/bin
-cp test3.txt publish_linux/bin
-cp test4.txt publish_linux/bin
-cp test5.txt publish_linux/bin
+cp test1.bin publish_linux/bin
+cp test2.bin publish_linux/bin
+cp test3.bin publish_linux/bin
+cp test4.bin publish_linux/bin
+cp test5.bin publish_linux/bin
 tar -czvf release_linux/linux-debug-binaries.tar.gz -C build_linux/build/Debug .
 
 echo "Package Publish Test Coverage Report"

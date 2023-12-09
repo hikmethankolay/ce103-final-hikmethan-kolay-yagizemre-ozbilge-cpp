@@ -17,37 +17,37 @@ mkdir build_win
 
 echo Folders are Recreated successfully.
 
-echo create txt files for unit tests
+echo create bin files for unit tests
 
-echo 0-)TEXT STRING0> test1.txt
-echo 1-)TEXT STRING1>> test1.txt
-echo 2-)TEXT STRING2>> test1.txt
-echo 3-)TEXT STRING3>> test1.txt
-echo 4-)TEXT STRING4>> test1.txt
+echo 0-)TEXT STRING0> test1.bin
+echo 1-)TEXT STRING1>> test1.bin
+echo 2-)TEXT STRING2>> test1.bin
+echo 3-)TEXT STRING3>> test1.bin
+echo 4-)TEXT STRING4>> test1.bin
 
-echo 0-)TEXT STRING0> test2.txt
-echo 1-)TEXT STRING1>> test2.txt
-echo 2-)TEXT STRING2>> test2.txt
-echo 3-)TEXT STRING3>> test2.txt
-echo 4-)TEXT STRING4>> test2.txt
+echo 0-)TEXT STRING0> test2.bin
+echo 1-)TEXT STRING1>> test2.bin
+echo 2-)TEXT STRING2>> test2.bin
+echo 3-)TEXT STRING3>> test2.bin
+echo 4-)TEXT STRING4>> test2.bin
 
-echo 0-)TEXT STRING0> test3.txt
-echo 1-)TEXT STRING1>> test3.txt
-echo 2-)TEXT STRING2>> test3.txt
-echo 3-)TEXT STRING3>> test3.txt
-echo 4-)TEXT STRING4>> test3.txt
+echo 0-)TEXT STRING0> test3.bin
+echo 1-)TEXT STRING1>> test3.bin
+echo 2-)TEXT STRING2>> test3.bin
+echo 3-)TEXT STRING3>> test3.bin
+echo 4-)TEXT STRING4>> test3.bin
 
-echo 0-)TEXT STRING0> test4.txt
-echo 1-)TEXT STRING1>> test4.txt
-echo 2-)TEXT STRING2>> test4.txt
-echo 3-)TEXT STRING3>> test4.txt
-echo 4-)TEXT STRING4>> test4.txt
+echo 0-)TEXT STRING0> test4.bin
+echo 1-)TEXT STRING1>> test4.bin
+echo 2-)TEXT STRING2>> test4.bin
+echo 3-)TEXT STRING3>> test4.bin
+echo 4-)TEXT STRING4>> test4.bin
 
-echo 0-)TEXT STRING0> test5.txt
-echo 1-)TEXT STRING1>> test5.txt
-echo 2-)TEXT STRING2>> test5.txt
-echo 3-)TEXT STRING3>> test5.txt
-echo 4-)TEXT STRING4>> test5.txt
+echo 0-)TEXT STRING0> test5.bin
+echo 1-)TEXT STRING1>> test5.bin
+echo 2-)TEXT STRING2>> test5.bin
+echo 3-)TEXT STRING3>> test5.bin
+echo 4-)TEXT STRING4>> test5.bin
 
 echo Testing Application with Coverage
 echo Configure CMAKE
@@ -57,11 +57,11 @@ call cmake --build build_win --config Debug -j4
 call cmake --build build_win --config Release -j4
 call cmake --install build_win --strip
 
-copy test1.txt build_win\src\tests\car_maintenance
-copy test2.txt build_win\src\tests\car_maintenance
-copy test3.txt build_win\src\tests\car_maintenance
-copy test4.txt build_win\src\tests\car_maintenance
-copy test5.txt build_win\src\tests\car_maintenance
+copy test1.bin build_win\src\tests\car_maintenance
+copy test2.bin build_win\src\tests\car_maintenance
+copy test3.bin build_win\src\tests\car_maintenance
+copy test4.bin build_win\src\tests\car_maintenance
+copy test5.bin build_win\src\tests\car_maintenance
 
 echo Test CMAKE
 cd build_win
@@ -88,11 +88,11 @@ call robocopy src\car_maintenance_lib\include "build_win\build\Debug" /E
 call robocopy src\car_maintenance_app\include "build_win\build\Debug" /E
 tar -czvf release_win\windows-debug-binaries.tar.gz -C build_win\build\Debug .
 
-copy test1.txt publish_win\bin
-copy test2.txt publish_win\bin
-copy test3.txt publish_win\bin
-copy test4.txt publish_win\bin
-copy test5.txt publish_win\bin
+copy test1.bin publish_win\bin
+copy test2.bin publish_win\bin
+copy test3.bin publish_win\bin
+copy test4.bin publish_win\bin
+copy test5.bin publish_win\bin
 
 echo ....................
 echo Operation Completed!

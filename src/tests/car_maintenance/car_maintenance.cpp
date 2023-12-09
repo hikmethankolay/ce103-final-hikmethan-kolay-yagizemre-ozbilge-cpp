@@ -19,62 +19,62 @@ string testString;
 int fail = -1;
 
 TEST_F(CarTest, TestFileRead) {
-  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING2\n3-)TEXT STRING3\n4-)TEXT STRING4\n";
-  EXPECT_EQ(testString, file_read("test1.txt"));
+  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING2\r\n3-)TEXT STRING3\r\n4-)TEXT STRING4\r\n";
+  EXPECT_EQ(testString, file_read("test1.bin"));
 }
 
 TEST_F(CarTest, TestFileAppend) {
-  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING2\n3-)TEXT STRING3\n4-)TEXT STRING4\n5-)TEXT STRING5\n";
+  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING2\r\n3-)TEXT STRING3\r\n4-)TEXT STRING4\r\n5-)TEXT STRING5\r\n";
   string appendString = "TEXT STRING5";
-  file_append("test2.txt", appendString);
-  EXPECT_EQ(testString, file_read("test2.txt"));
+  file_append("test2.bin", appendString);
+  EXPECT_EQ(testString, file_read("test2.bin"));
 }
 
 TEST_F(CarTest, TestFileEdit) {
-  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING2\n3-)TEXT STRING EDIT\n4-)TEXT STRING4\n";
+  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING2\r\n3-)TEXT STRING EDIT\r\n4-)TEXT STRING4\r\n";
   string editString = "TEXT STRING EDIT";
-  file_edit("test3.txt", 3, editString);
-  EXPECT_EQ(testString, file_read("test3.txt"));
+  file_edit("test3.bin", 3, editString);
+  EXPECT_EQ(testString, file_read("test3.bin"));
 }
 
 TEST_F(CarTest, TestFileDelete) {
-  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING3\n3-)TEXT STRING4\n";
-  file_line_delete("test4.txt", 2);
-  EXPECT_EQ(testString, file_read("test4.txt"));
+  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING3\r\n3-)TEXT STRING4\r\n";
+  file_line_delete("test4.bin", 2);
+  EXPECT_EQ(testString, file_read("test4.bin"));
 }
 
 TEST_F(CarTest, TestFileWrite) {
-  testString = "0-)TEXT STRING WRITE\n";
+  testString = "0-)TEXT STRING WRITE\r\n";
   string writeString = "TEXT STRING WRITE";
-  file_write("test5.txt", writeString);
-  EXPECT_EQ(testString, file_read("test5.txt"));
+  file_write("test5.bin", writeString);
+  EXPECT_EQ(testString, file_read("test5.bin"));
 }
 
 TEST_F(CarTest, TestFileReadFail) {
-  ASSERT_EQ("-1", file_read("test1f.txt"));
+  ASSERT_EQ("-1", file_read("test1f.bin"));
 }
 
 TEST_F(CarTest, TestFileAppendFail) {
   string appendString = "TEXT STRING5";
-  ASSERT_EQ(fail, file_append("test2f.txt", appendString));
+  ASSERT_EQ(fail, file_append("test2f.bin", appendString));
 }
 
 TEST_F(CarTest, TestFileEditFail) {
   string editString = "TEXT STRING EDIT";
-  ASSERT_EQ(fail, file_edit("test3f.txt", 3, editString));
+  ASSERT_EQ(fail, file_edit("test3f.bin", 3, editString));
 }
 
 TEST_F(CarTest, TestFileEditFail_2) {
   string editString = "TEXT STRING EDIT";
-  ASSERT_EQ(fail, file_edit("test3.txt", 100, editString));
+  ASSERT_EQ(fail, file_edit("test3.bin", 100, editString));
 }
 
 TEST_F(CarTest, TestFileDeleteFail) {
-  ASSERT_EQ(fail, file_line_delete("test4f.txt", 2));
+  ASSERT_EQ(fail, file_line_delete("test4f.bin", 2));
 }
 
 TEST_F(CarTest, TestFileDeleteFail_2) {
-  ASSERT_EQ(fail, file_line_delete("test4.txt", 100));
+  ASSERT_EQ(fail, file_line_delete("test4.bin", 100));
 }
 
 int main(int argc, char **argv) {
