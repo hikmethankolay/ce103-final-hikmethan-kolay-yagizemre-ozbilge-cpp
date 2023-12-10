@@ -91,5 +91,21 @@ int user_login(string username = "None", string password = "None", string user_f
  */
 int user_change_password(string recovery_key = "None", string new_password = "None", string user_file = "user.bin");
 
+/**
+ * @brief This function prints service history records to console
+ *
+ *
+ */
+int show_record(string file_name);
+
+/**
+ * @brief This function register records to service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int register_service_history_record(string file_name = "service_history_records.bin", string vehicle_model = "None", int service_km = 1, int next_service_km = 1, int service_cost = 1);
+
 
 #endif // CAR_MAINTENANCE_LIB_H

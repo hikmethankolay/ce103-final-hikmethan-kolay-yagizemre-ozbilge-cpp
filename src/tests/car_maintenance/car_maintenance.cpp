@@ -176,6 +176,15 @@ TEST_F(CarTest, TestUserChangePasswordFail_2) {
 }
 
 /**
+ * @brief Tests the register_service_history_record function
+ */
+TEST_F(CarTest, TestRegisterService) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST\n1-)Audi   10500   15500   1500\n";
+  register_service_history_record("service_history_test.bin","Audi",10500,15500,1500);
+  EXPECT_EQ(testString,file_read("service_history_test.bin"));
+}
+
+/**
  * @brief Main function to run the tests.
  */
 int main(int argc, char **argv) {

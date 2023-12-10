@@ -392,3 +392,124 @@ int user_change_password(string recovery_key, string new_password, string user_f
 
   return -1;
 }
+/**
+ * @brief This function reads record from bin files and prints them to console
+ *
+ *
+ */
+int show_record(string file_name) {
+  cout << "-------------------------------------------------------";
+  file_read(file_name);
+  cout << "-------------------------------------------------------";
+  return 0;
+}
+/**
+ * @brief This function register records to service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int register_service_history_record(string file_name,string vehicle_model, int service_km, int next_service_km, int service_cost) {
+  string record;
+
+  if (vehicle_model == "None" && service_km == 1 && next_service_km == 1 && service_cost == 1) {
+    cout << "What is the model of vehilce?";
+    cin >> vehicle_model;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the service KM?";
+    cin >> service_km;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the next service KM?";
+    cin >> next_service_km;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the service cost?";
+    cin >> service_cost;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+  }
+
+  record = vehicle_model + "   " + to_string(service_km) + "   " + to_string(next_service_km) + "   " + to_string(service_cost);
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    file_write(file_name, "VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST");
+    file_append(file_name,record);
+    return 0;
+  } else {
+    file_append("service_history_records.bin", record);
+    return 0;
+  }
+
+  return 0;
+}
+
+int edit_service_history_record() {
+  return 0;
+}
+
+int delete_service_history_record() {
+  return 0;
+}
+
+int register_maintenance_reminder_record() {
+  return 0;
+}
+
+int edit_maintenance_reminder_record() {
+  return 0;
+}
+
+int delete_maintenance_reminder_record() {
+  return 0;
+}
+
+int register_expense_record() {
+  return 0;
+}
+
+int edit_expense_record() {
+  return 0;
+}
+
+int delete_expense_record() {
+  return 0;
+}
+
+int register_fuel_efficiency_record() {
+  return 0;
+}
+
+int edit_fuel_efficiency_record() {
+  return 0;
+}
+
+int delete_fuel_efficiency_record() {
+  return 0;
+}

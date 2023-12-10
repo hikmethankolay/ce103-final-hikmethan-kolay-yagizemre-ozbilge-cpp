@@ -10,6 +10,10 @@ int main() {
   do {
     int selectedOption;
     int selectedOption2;
+    int selectedOption3;
+    int selectedOption4;
+    int selectedOption5;
+    int selectedOption6;
     cout << "----------Login----------\n";
     cout << "1-)Login\n";
     cout << "2-)Register\n";
@@ -32,6 +36,21 @@ int main() {
 
           switch (selectedOption2) {
             case 1:
+              cout << "\n----------Service History Tracking----------\n";
+              cout << "1-)Show Service History Record\n";
+              cout << "2-)Register Service History Record\n";
+              cout << "3-)Edit Service History Record\n";
+              cout << "4-)Delete Service History Record\n";
+              cout << "5-)Previous Menu\n";
+              cout << "Make a choice(1-5):";
+              cin >> selectedOption3;
+
+              if (selectedOption3 == 1) {
+                show_record("service_history_records.bin");
+              } else if (selectedOption3 == 2) {
+                register_service_history_record();
+              }
+
             case 2:
             case 3:
             case 4:
