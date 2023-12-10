@@ -62,4 +62,34 @@ int file_edit(string file_name, int line_number_to_edit, string new_line);
  */
 int file_line_delete(string file_name, int line_number_to_delete);
 
+/**
+ * @brief This function is for user register
+ *
+ * Function creates a user.bin file and writes inputted username and password in it.
+ *
+ * @return 0 on success.
+ * @return -1 on faill.
+ */
+int user_register(string new_username = "None", string new_password = "None", string new_recovery_key = "None", string user_file = "user.bin", string choice = "None");
+
+/**
+ * @brief This function is for user login
+ *
+ * Function read user.bin file and checks if username and password matchs with inputted username and password
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int user_login(string username = "None", string password = "None", string user_file = "user.bin");
+
+/**
+ * @brief This function changes password of user.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int user_change_password(string recovery_key = "None", string new_password = "None", string user_file = "user.bin");
+
+
 #endif // CAR_MAINTENANCE_LIB_H
