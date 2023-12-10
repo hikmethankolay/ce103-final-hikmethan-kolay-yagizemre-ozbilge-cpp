@@ -91,12 +91,5 @@ int user_login(string username = "None", string password = "None", string user_f
  */
 int user_change_password(string recovery_key = "None", string new_password = "None", string user_file = "user.bin");
 
-/**
- * @brief This function prints main menu and lets user to make choice with arrow keys.
- *
- *
- * @return 0,1,2 or 3 depending on user choice.
- */
-int main_menu();
 
 #endif // CAR_MAINTENANCE_LIB_H

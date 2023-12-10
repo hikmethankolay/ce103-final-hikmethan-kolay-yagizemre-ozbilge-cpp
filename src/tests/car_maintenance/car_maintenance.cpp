@@ -117,6 +117,20 @@ TEST_F(CarTest, TestFileDeleteFail_2) {
 }
 
 /**
+ * @brief Tests the user_login function in a fail case
+ */
+TEST_F(CarTest, TestUserLoginFail) {
+  EXPECT_EQ(fail, user_login("username", "passwordaa", "usertest.bin"));
+}
+
+/**
+ * @brief Tests the user_change_password function in a fail case
+ */
+TEST_F(CarTest, TestUserChangePasswordFail) {
+  EXPECT_EQ(fail, user_change_password("recoverykey","newpassword", "usertest.bin"));
+}
+
+/**
  * @brief Tests the user_register function.
  */
 TEST_F(CarTest, TestUserRegister) {
@@ -133,31 +147,31 @@ TEST_F(CarTest, TestUserRegisterFail) {
 }
 
 /**
- * @brief Tests the user_register function.
+ * @brief Tests the user_login function.
  */
 TEST_F(CarTest, TestUserLogin) {
   EXPECT_EQ(success, user_login("username", "password", "usertest.bin"));
 }
 
 /**
- * @brief Tests the user_register function in a fail case
+ * @brief Tests the user_login function in a fail case
  */
-TEST_F(CarTest, TestUserLoginFail) {
+TEST_F(CarTest, TestUserLoginFail_2) {
   EXPECT_EQ(fail, user_login("usernameaa", "passwordaa", "usertest.bin"));
 }
 
 
 /**
- * @brief Tests the user_register function.
+ * @brief Tests the user_change_password function.
  */
 TEST_F(CarTest, TestUserChangePassword) {
   EXPECT_EQ(success, user_change_password("recoverykey", "newpassword", "usertest.bin"));
 }
 
 /**
- * @brief Tests the user_register function in a fail case
+ * @brief Tests the user_change_password function in a fail case
  */
-TEST_F(CarTest, TestUserChangePasswordFail) {
+TEST_F(CarTest, TestUserChangePasswordFail_2) {
   EXPECT_EQ(fail, user_change_password("recoverykeyaa","newpassword", "usertest.bin"));
 }
 

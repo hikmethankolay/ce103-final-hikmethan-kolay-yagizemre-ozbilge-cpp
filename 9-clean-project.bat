@@ -27,6 +27,7 @@ del test2.bin
 del test3.bin
 del test4.bin
 del test5.bin
+del usertest.bin
 del *_records.bin
 
 echo Delete and Create Required Folders and Their Files.

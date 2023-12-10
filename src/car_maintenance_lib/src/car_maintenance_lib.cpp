@@ -237,7 +237,7 @@ int file_line_delete(string file_name, int line_number_to_delete) {
  * @return 0 on success.
  * @return -1 on faill.
  */
-int user_register(string new_username = "None", string new_password = "None", string new_recovery_key = "None", string user_file = "user.bin", string choice = "None") {
+int user_register(string new_username, string new_password, string new_recovery_key, string user_file, string choice) {
   string login_info;
 
   if (choice == "None") {
@@ -278,7 +278,7 @@ int user_register(string new_username = "None", string new_password = "None", st
  * @return 0 on success.
  * @return -1 on fail.
  */
-int user_login(string username = "None", string password = "None", string user_file = "user.bin") {
+int user_login(string username, string password, string user_file) {
   string username_read;
   string password_read;
   string recovery_key_read;
@@ -323,6 +323,8 @@ int user_login(string username = "None", string password = "None", string user_f
     cout << "Wrong username or password";
     return -1;
   }
+
+  return -1;
 }
 
 
@@ -333,7 +335,7 @@ int user_login(string username = "None", string password = "None", string user_f
  * @return 0 on success.
  * @return -1 on fail.
  */
-int user_change_password(string recovery_key = "None", string new_password = "None", string user_file = "user.bin") {
+int user_change_password(string recovery_key, string new_password, string user_file) {
   string username_read;
   string password_read;
   string recovery_key_read;
@@ -388,78 +390,6 @@ int user_change_password(string recovery_key = "None", string new_password = "No
     cout << "Wrong Recovery Key";
     return -1;
   }
-}
 
-/**
- * @brief This function prints main menu and lets user to make choice with arrow keys.
- *
- *
- * @return 0,1,2 or 3 depending on user choice.
- */
-int main_menu() {
-  int selectedOption;
-  cout << "----------Main Menu----------\n";
-  cout << "1)User Authentication\n";
-  cout << "2Service History Tracking\n";
-  cout << "3)Maintenance Reminders\n";
-  cout << "4)Expense Logging:\n";
-  cout << "5)Fuel Efficiency Reports\n";
-  cout << "6)Exit\n";
-  cout << "Make a choice(1-6)";
-
-  for (int i = 1; i <= 6; i++) {
-    if (i == selectedOption) {
-      cout << i << ".Option" << i << "\n";
-    }
-
-    return selectedOption;
-  }
-
-  int navigateMenu(int selectedOption) {
-    char input;
-    cin >> input;
-
-    switch (input) {
-      case 'w'; //Up arrow key
-
-        if (selectedOption > 1) {
-          return selectedOption - 1;
-        }
-
-        break;
-
-      case 's'; //Down arrow key
-
-        if (selectedOption < 6) {
-          return selectedOption + 1;
-        }
-
-        break;
-
-      case '\n'; //Enter key
-        return selectedOption; //Return the selected option.
-    }
-
-    return selectedOption;
-  }
-  int performAction(int choice) {
-    cout << "Option" << choice << "selected\n";
-    //Add code for the selected option's action
-    return choice; //Return the choice to continue or exit
-  }
-  int main() {
-    int choice = 1;
-
-    do {
-      choice = disPlayMenu(choice);
-
-      if (choice != 6) {
-        choice = performAction(choice);
-        cout << "Press enter to continue...";
-        cin.ignore(numeric_limits<streamsize>::max, '\n');
-        cin.get();
-      }
-    } while (choice != 6);
-  }
-  return 0;
+  return -1;
 }
