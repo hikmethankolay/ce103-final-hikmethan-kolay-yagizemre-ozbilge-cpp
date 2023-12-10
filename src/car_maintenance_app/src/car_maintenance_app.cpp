@@ -13,4 +13,5 @@
  */
 int main() {
   // Code for your main function goes here
+  return 0;
 }

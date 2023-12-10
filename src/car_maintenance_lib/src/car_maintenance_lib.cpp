@@ -238,6 +238,7 @@ int file_line_delete(string file_name, int line_number_to_delete) {
  * @return -1 on faill.
  */
 int user_register() {
+  return 0;
 }
 
 /**
@@ -248,6 +249,7 @@ int user_register() {
  * @return 0 on success..
  */
 int user_login() {
+  return 0;
 }
 
 /**
@@ -257,4 +259,5 @@ int user_login() {
  * @return 0,1,2 or 3 depending on user choice.
  */
 int main_menu() {
+  return 0;
 }
