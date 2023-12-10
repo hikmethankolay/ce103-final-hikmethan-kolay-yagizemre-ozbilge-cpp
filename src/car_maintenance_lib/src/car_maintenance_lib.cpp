@@ -237,8 +237,37 @@ int file_line_delete(string file_name, int line_number_to_delete) {
  * @return 0 on success.
  * @return -1 on faill.
  */
-int user_register() {
-  return 0;
+int user_register(string new_username = "None", string new_password = "None", string new_recovery_key = "None", string user_file = "user.bin", string choice = "None") {
+  string login_info;
+
+  if (choice == "None") {
+    cout << "Do you understand that if you create a new account all the records that have been saved so far will be deleted?[Y/N]";
+    cin >> choice;
+  }
+
+  if (choice == "Y") {
+    if (new_username == "None" && new_password == "None" && new_recovery_key == "None") {
+      cout << "Please enter a new username:";
+      cin >> new_username;
+      cout << "Please enter a new password:";
+      cin >> new_password;
+      cout << "\nWARNING!!!\nYou will use this to change password if neeeded, if you lost this you cant access logs without them being completely deleted\nWARNING!!!\n";
+      cout << "Please enter a new recovery key:";
+      cin >> new_recovery_key;
+    }
+
+    login_info = new_username + "/" + new_password + "/" + new_recovery_key;
+    myFile.open(user_file, ios::out | ios::binary | ios::trunc); // Opens file with output tag
+    myFile.write(login_info.c_str(), login_info.length()); // Deletes everything inside file and writes login_info variable
+    myFile.close();
+    remove("service_history_records.bin");
+    remove("maintenance_reminder_records.bin");
+    remove("expense_records.bin");
+    remove("fuel_efficiency_records.bin");
+    return 0;
+  } else {
+    return -1;
+  }
 }
 
 /**
@@ -246,10 +275,119 @@ int user_register() {
  *
  * Function read user.bin file and checks if username and password matchs with inputted username and password
  *
- * @return 0 on success..
+ * @return 0 on success.
+ * @return -1 on fail.
  */
-int user_login() {
-  return 0;
+int user_login(string username = "None", string password = "None", string user_file = "user.bin") {
+  string username_read;
+  string password_read;
+  string recovery_key_read;
+  int count = 0;
+  myFile.open(user_file, ios::in | ios::binary); // Opens file with input tag
+
+  if (myFile.is_open()) {
+    char i;
+
+    while (myFile.get(i)) {
+      if (i == '/') {
+        count++;
+        continue;
+      }
+
+      if (count == 0) {
+        username_read = username_read + i;
+      } else if (count == 1) {
+        password_read = password_read + i;
+      } else if (count == 2) {
+        break;
+      }
+    }
+
+    myFile.close();
+  } else {
+    cout << "There is no user info, Please register first.\n";
+    return -1;
+  }
+
+  if (username == "None" && password == "None") {
+    cout << "Please enter username:";
+    cin >> username;
+    cout << "Please enter password:";
+    cin >> password;
+  }
+
+  if (username == username_read && password == password_read) {
+    cout << "Login Succesfull";
+    return 0;
+  } else if (username != username_read || password != password_read) {
+    cout << "Wrong username or password";
+    return -1;
+  }
+}
+
+
+/**
+ * @brief This function changes password of user.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int user_change_password(string recovery_key = "None", string new_password = "None", string user_file = "user.bin") {
+  string username_read;
+  string password_read;
+  string recovery_key_read;
+  string new_login_info;
+  int count = 0;
+  myFile.open(user_file, ios::in | ios::binary); // Opens file with input tag
+
+  if (myFile.is_open()) {
+    char i;
+
+    while (myFile.get(i)) {
+      if (i == '/') {
+        count++;
+        continue;
+      }
+
+      if (count == 0) {
+        username_read = username_read + i;
+      } else if (count == 1) {
+        continue;
+      } else if (count == 2) {
+        recovery_key_read = recovery_key_read + i;
+      }
+    }
+
+    myFile.close();
+  } else {
+    cout << "There is no user info, Please register first.\n";
+    return -1;
+  }
+
+  if (recovery_key_read == "None") {
+    cout << "Please enter your recovery key:";
+    cin >> recovery_key;
+  }
+
+  if (recovery_key_read == recovery_key) {
+    cout << "Recovey Key Approved\n";
+
+    if (new_password == "None") {
+      cout << "Please enter a new password:";
+      cin >> new_password;
+    }
+
+    new_login_info = username_read + "/" + new_password + "/" + recovery_key_read;
+    myFile.open(user_file, ios::out | ios::binary | ios::trunc); // Opens file with output tag
+    myFile.write(new_login_info.c_str(), new_login_info.length()); // Deletes everything inside file and writes login_info variable
+    myFile.close();
+    cout << "Password changed succesfully";
+    return 0;
+  } else if (recovery_key_read != recovery_key) {
+    cout << "Wrong Recovery Key";
+    return -1;
+  }
 }
 
 /**

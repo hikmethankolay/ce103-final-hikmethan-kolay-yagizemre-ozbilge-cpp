@@ -22,6 +22,7 @@ class CarTest : public ::testing::Test {
 
 string testString;
 int fail = -1;
+int success = 0;
 
 /**
  * @brief Tests the file_read function.
@@ -94,7 +95,7 @@ TEST_F(CarTest, TestFileEditFail) {
 }
 
 /**
- * @brief Tests the file_edit function in a fail case (line number out of bounds).
+ * @brief Tests the file_edit function in a fail case (line number out of range).
  */
 TEST_F(CarTest, TestFileEditFail_2) {
   string editString = "TEXT STRING EDIT";
@@ -109,10 +110,55 @@ TEST_F(CarTest, TestFileDeleteFail) {
 }
 
 /**
- * @brief Tests the file_line_delete function in a fail case (line number out of bounds).
+ * @brief Tests the file_line_delete function in a fail case (line number out of range).
  */
 TEST_F(CarTest, TestFileDeleteFail_2) {
   ASSERT_EQ(fail, file_line_delete("test4.bin", 100));
+}
+
+/**
+ * @brief Tests the user_register function.
+ */
+TEST_F(CarTest, TestUserRegister) {
+  testString = "username/password/recoverykey";
+  user_register("username","password","recoverykey","usertest.bin","Y");
+  EXPECT_EQ(testString, file_read("usertest.bin"));
+}
+
+/**
+ * @brief Tests the user_register function in a fail case
+ */
+TEST_F(CarTest, TestUserRegisterFail) {
+  EXPECT_EQ(fail, user_register("username", "password", "recoverykey", "usertest.bin", "N"));
+}
+
+/**
+ * @brief Tests the user_register function.
+ */
+TEST_F(CarTest, TestUserLogin) {
+  EXPECT_EQ(success, user_login("username", "password", "usertest.bin"));
+}
+
+/**
+ * @brief Tests the user_register function in a fail case
+ */
+TEST_F(CarTest, TestUserLoginFail) {
+  EXPECT_EQ(fail, user_login("usernameaa", "passwordaa", "usertest.bin"));
+}
+
+
+/**
+ * @brief Tests the user_register function.
+ */
+TEST_F(CarTest, TestUserChangePassword) {
+  EXPECT_EQ(success, user_change_password("recoverykey", "newpassword", "usertest.bin"));
+}
+
+/**
+ * @brief Tests the user_register function in a fail case
+ */
+TEST_F(CarTest, TestUserChangePasswordFail) {
+  EXPECT_EQ(fail, user_change_password("recoverykeyaa","newpassword", "usertest.bin"));
 }
 
 /**
