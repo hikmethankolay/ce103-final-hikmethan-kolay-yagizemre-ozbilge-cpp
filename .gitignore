@@ -6,11 +6,11 @@
 publish
 docs
 /build_win
-/test1.txt
-/test2.txt
-/test3.txt
-/test4.txt
-/test5.txt
+/test1.bin
+/test2.bin
+/test3.bin
+/test4.bin
+/test5.bin
 
 ### C ###
 # Prerequisites
