@@ -107,5 +107,23 @@ int show_record(string file_name);
  */
 int register_service_history_record(string file_name = "service_history_records.bin", string vehicle_model = "None", int service_km = 1, int next_service_km = 1, int service_cost = 1);
 
+/**
+ * @brief This function edit the records in service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int edit_service_history_record(string file_name = "service_history_records.bin", int line_number_to_edit = 0, string vehicle_model = "None", int service_km = 1, int next_service_km = 1,
+                                int service_cost = 1);
+
+/**
+ * @brief This function delete the records in service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int delete_service_history_record(string file_name = "service_history_records.bin", int line_number_to_delete = 0);
 
 #endif // CAR_MAINTENANCE_LIB_H

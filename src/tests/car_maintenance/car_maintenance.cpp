@@ -184,6 +184,26 @@ TEST_F(CarTest, TestRegisterService) {
   EXPECT_EQ(testString,file_read("service_history_test.bin"));
 }
 
+TEST_F(CarTest, TestEditService) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST\n1-)Mercedes   12500   17500   1700\n";
+  edit_service_history_record("service_history_test.bin", 1, "Mercedes", 12500, 17500, 1700);
+  EXPECT_EQ(testString, file_read("service_history_test.bin"));
+}
+
+TEST_F(CarTest, TestEditServiceFail) {
+  EXPECT_EQ(fail, edit_service_history_record("service_history_testfail.bin", 1, "Mercedes", 12500, 17500, 1700));
+}
+
+
+TEST_F(CarTest, TestDeleteService) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST\n";
+  delete_service_history_record("service_history_test.bin", 1);
+  EXPECT_EQ(testString, file_read("service_history_test.bin"));
+}
+
+TEST_F(CarTest, TestDeleteServiceFail) {
+  EXPECT_EQ(fail, delete_service_history_record("service_history_testfail.bin", 1));
+}
 /**
  * @brief Main function to run the tests.
  */

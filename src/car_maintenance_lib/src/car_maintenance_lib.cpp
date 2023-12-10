@@ -469,23 +469,134 @@ int register_service_history_record(string file_name,string vehicle_model, int s
 
   return 0;
 }
+/**
+ * @brief This function edit the records in service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int edit_service_history_record(string file_name, int line_number_to_edit, string vehicle_model, int service_km, int next_service_km, int service_cost) {
+  string record;
 
-int edit_service_history_record() {
+  if (vehicle_model == "None" && line_number_to_edit == 0 && service_km == 1 && next_service_km == 1 && service_cost == 1) {
+    cout << "Which line do you wasn to edit?";
+    cin >> line_number_to_edit;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the model of vehilce?";
+    cin >> vehicle_model;
+    cout << "What is the service KM?";
+    cin >> service_km;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the next service KM?";
+    cin >> next_service_km;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the service cost?";
+    cin >> service_cost;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+  }
+
+  record = vehicle_model + "   " + to_string(service_km) + "   " + to_string(next_service_km) + "   " + to_string(service_cost);
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    cout << "There is no record to edit.";
+    return -1;
+  } else {
+    myFile.close();
+    file_edit(file_name,line_number_to_edit,record);
+    return 0;
+  }
+
   return 0;
 }
+/**
+ * @brief This function delete the records in service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int delete_service_history_record(string file_name, int line_number_to_delete) {
+  if (line_number_to_delete == 0) {
+    cout << "Which line do you wasn to delete?";
+    cin >> line_number_to_delete;
 
-int delete_service_history_record() {
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+  }
+
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    cout << "There is no record to delete.";
+    return -1;
+  } else {
+    myFile.close();
+    file_line_delete(file_name, line_number_to_delete);
+    return 0;
+  }
+
   return 0;
 }
-
+/**
+ * @brief This function register records to maintenance_reminder_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
 int register_maintenance_reminder_record() {
   return 0;
 }
-
+/**
+ * @brief This function edit the records in maintenance_reminder_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
 int edit_maintenance_reminder_record() {
   return 0;
 }
-
+/**
+ * @brief This function delete the records in maintenance_reminder_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
 int delete_maintenance_reminder_record() {
   return 0;
 }

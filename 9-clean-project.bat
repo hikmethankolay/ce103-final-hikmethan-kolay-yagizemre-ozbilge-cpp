@@ -29,6 +29,7 @@ del test4.bin
 del test5.bin
 del usertest.bin
 del *_records.bin
+del *_test.bin
 
 echo Delete and Create Required Folders and Their Files.
 rd /S /Q ".vs"
