@@ -366,7 +366,7 @@ int user_change_password(string recovery_key, string new_password, string user_f
     return -1;
   }
 
-  if (recovery_key_read == "None") {
+  if (recovery_key == "None") {
     cout << "Please enter your recovery key:";
     cin >> recovery_key;
   }

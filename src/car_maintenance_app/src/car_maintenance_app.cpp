@@ -60,10 +60,13 @@ int main() {
                   cout << "-------------------------------------------------------";
                 } else if (service_menu == 2) {
                   register_service_history_record();
+                  continue;
                 } else if (service_menu == 3) {
                   edit_service_history_record();
+                  continue;
                 } else if (service_menu == 4) {
                   delete_service_history_record();
+                  continue;
                 } else if (service_menu == 5) {
                   continue;
                 }
@@ -104,11 +107,14 @@ int main() {
                   file_read("expense_records.bin");
                   cout << "-------------------------------------------------------";
                 } else if (expense_menu == 2) {
-                  register_expense_record()
+                  register_expense_record();
+                  continue;
                 } else if (expense_menu == 3) {
-                  edit_expense_record()
+                  edit_expense_record();
+                  continue;
                 } else if (expense_menu == 4) {
-                  delete_expense_record()
+                  delete_expense_record();
+                  continue;
                 } else if (expense_menu == 5) {
                   continue;
                 }
