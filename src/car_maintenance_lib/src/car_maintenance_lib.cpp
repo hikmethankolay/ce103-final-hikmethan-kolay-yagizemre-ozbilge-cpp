@@ -228,3 +228,33 @@ int file_line_delete(string file_name, int line_number_to_delete) {
     return -1;
   }
 }
+
+/**
+ * @brief This function is for user register
+ *
+ * Function creates a user.bin file and writes inputted username and password in it.
+ *
+ * @return 0 on success.
+ * @return -1 on faill.
+ */
+int user_register() {
+}
+
+/**
+ * @brief This function is for user login
+ *
+ * Function read user.bin file and checks if username and password matchs with inputted username and password
+ *
+ * @return 0 on success..
+ */
+int user_login() {
+}
+
+/**
+ * @brief This function prints main menu and lets user to make choice with arrow keys.
+ *
+ *
+ * @return 0,1,2 or 3 depending on user choice.
+ */
+int main_menu() {
+}
