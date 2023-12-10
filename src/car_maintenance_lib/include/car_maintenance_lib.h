@@ -107,5 +107,13 @@ int show_record(string file_name);
  */
 int register_service_history_record(string file_name = "service_history_records.bin", string vehicle_model = "None", int service_km = 1, int next_service_km = 1, int service_cost = 1);
 
+/**
+ * @brief This function register records to service_history_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int register_expense_record(string file_name = "expense_logging_records.bin", int spare_part_expense = 1, int labor_expense = 1, int insurance_expense = 1);
 
 #endif // CAR_MAINTENANCE_LIB_H
