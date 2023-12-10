@@ -392,17 +392,7 @@ int user_change_password(string recovery_key, string new_password, string user_f
 
   return -1;
 }
-/**
- * @brief This function reads record from bin files and prints them to console
- *
- *
- */
-int show_record(string file_name) {
-  cout << "-------------------------------------------------------";
-  file_read(file_name);
-  cout << "-------------------------------------------------------";
-  return 0;
-}
+
 /**
  * @brief This function register records to service_history_records.bin.
  *

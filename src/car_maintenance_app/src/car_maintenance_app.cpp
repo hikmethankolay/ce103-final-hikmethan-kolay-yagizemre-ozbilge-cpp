@@ -1,9 +1,17 @@
+/**
+ * @file car_maintenance_app.cpp
+ * @brief Car maintenance Application main file
+ *
+ */
 #include <iostream>
 #include <string>
 #include "../../car_maintenance_lib/include/car_maintenance_lib.h"  // Adjust this include path based on your project structure
 
 using namespace std;
-
+/**
+ * @brief Car maintenance Application main function
+ *
+ */
 int main() {
   bool run = true;
 
@@ -47,7 +55,9 @@ int main() {
                 cin >> service_menu;
 
                 if (service_menu == 1) {
-                  show_record("service_history_records.bin");
+                  cout << "-------------------------------------------------------";
+                  file_read("service_history_records.bin");
+                  cout << "-------------------------------------------------------";
                 } else if (service_menu == 2) {
                   register_service_history_record();
                 } else if (service_menu == 3) {
@@ -69,7 +79,9 @@ int main() {
                 cin >> maintenance_reminder_menu;
 
                 if (maintenance_reminder_menu == 1) {
-                  show_record("maintenance_reminder_records.bin");
+                  cout << "-------------------------------------------------------";
+                  file_read("maintenance_reminder_records.bin");
+                  cout << "-------------------------------------------------------";
                 } else if (maintenance_reminder_menu == 2) {
                 } else if (maintenance_reminder_menu == 3) {
                 } else if (maintenance_reminder_menu == 4) {
@@ -88,7 +100,9 @@ int main() {
                 cin >> expense_menu;
 
                 if (expense_menu == 1) {
-                  show_record("expense_records.bin");
+                  cout << "-------------------------------------------------------";
+                  file_read("expense_records.bin");
+                  cout << "-------------------------------------------------------";
                 } else if (expense_menu == 2) {
                 } else if (expense_menu == 3) {
                 } else if (expense_menu == 4) {
@@ -107,7 +121,9 @@ int main() {
                 cin >> fuel_efficiency_menu;
 
                 if (fuel_efficiency_menu == 1) {
-                  show_record("fuel_efficiency_records.bin");
+                  cout << "-------------------------------------------------------";
+                  file_read("fuel_efficiency_records.bin");
+                  cout << "-------------------------------------------------------";
                 } else if (fuel_efficiency_menu == 2) {
                 } else if (fuel_efficiency_menu == 3) {
                 } else if (fuel_efficiency_menu == 4) {

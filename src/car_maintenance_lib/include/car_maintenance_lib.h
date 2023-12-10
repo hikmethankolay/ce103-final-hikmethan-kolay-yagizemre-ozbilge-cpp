@@ -92,13 +92,6 @@ int user_login(string username = "None", string password = "None", string user_f
 int user_change_password(string recovery_key = "None", string new_password = "None", string user_file = "user.bin");
 
 /**
- * @brief This function prints service history records to console
- *
- *
- */
-int show_record(string file_name);
-
-/**
  * @brief This function register records to service_history_records.bin.
  *
  *
