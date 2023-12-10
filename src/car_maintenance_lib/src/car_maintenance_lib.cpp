@@ -590,16 +590,150 @@ int edit_maintenance_reminder_record() {
 int delete_maintenance_reminder_record() {
   return 0;
 }
+/**
+ * @brief This function register records to expense_logging_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int register_expense_record(string file_name, string car_model, string expense_date, int expense) {
+  string record;
 
-int register_expense_record() {
+  if (car_model == "None" && expense_date == "None" && expense == 1)
+    cout << "What is model of the car?";
+
+  cin >> car_model;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  cout << "What is the expense date";
+  cin >> expense_date;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  cout << "What is the expense";
+  cin >> expense;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  record = car_model + "    " + expense_date + "     " + to_string(expense);
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (myFile.is_open()) {
+    file_write(file_name, "CAR MODEL| EXPENSE DATE | EXPENSE |");
+    file_append(file_name, record);
+    return 0;
+  } else {
+    file_append("expense_logging_records", record);
+  }
+
   return 0;
 }
+/**
+* @brief This function edit the records in maintenance_reminder_records.bin.
+*
+*
+* @return 0 on success.
+* @return -1 on fail.
+*/
+int edit_expense_record(string file_name, int line_number_to_edit, string car_model, string expense_date, int expense) {
+  string record;
 
-int edit_expense_record() {
+  if (car_model == "None" && expense_date == "None" && line_number_to_edit == 0 && expense == 1)
+    cout << "Which line do you want to edit?";
+
+  cin >> line_number_to_edit;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  cout << "What is model of the car ";
+  cin >> car_model;
+  cout << "What is the expense date";
+  cin >> expense_date;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  cout << "What is the expense";
+  cin >> expense;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  record = car_model + "    " + expense_date + "     " + to_string(expense);
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    cout << "There is no record to edit";
+    return -1;
+  } else {
+    myFile.close();
+    file_edit(file_name, line_number_to_edit, record);
+    return 0;
+  }
+
   return 0;
 }
+/**
+* @brief This function delete the records in maintenance_reminder_records.bin.
+*
+*
+* @return 0 on success.
+* @return -1 on fail.
+*/
+int delete_expense_record(string file_name, int line_number_to_delete) {
+  if (line_number_to_delete == 0) {
+    cout << "Which line do you want to delete?";
+    cin >> line_number_to_delete;
 
-int delete_expense_record() {
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
+
+    myFile.open(file_name, ios::in | ios::binary);
+
+    if (!myFile.is_open()) {
+      cout << "There is no record to delete";
+      return -1;
+    } else {
+      myFile.close();
+      file_line_delete(file_name, line_number_to_delete);
+      return 0;
+    }
+  }
+
   return 0;
 }
 
