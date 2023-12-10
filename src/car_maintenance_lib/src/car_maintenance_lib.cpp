@@ -490,7 +490,52 @@ int delete_maintenance_reminder_record() {
   return 0;
 }
 
-int register_expense_record() {
+int register_expense_record(string file_name, string car_model, string expense_date, int expense) {
+  string record;
+
+  if (spare_part_expense == 1 && labor_expense == 1 && insurance_expense == 1)
+    cout << "What is the spare part expense";
+
+  cin >> spare_part_expense;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  cout << "What is the labor expense";
+  cin >> labor_expense;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  cout << "What is the insurance expense";
+  cin >> insurance_expense;
+
+  if (!std::cin.good()) { //checks if input is an integer
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cout << "Please use an integer\n";
+    return -1;
+  }
+
+  record = to_string(spare_part_expense) + "    " + to_string(labor_expense) + "     " + to_string(insurance_expense) ;
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (myFile.is_open()) {
+    file_write(file_name, "SPARE PART EXPENSE | LABOR EXPENSE | INSURANCE EXPENSE |");
+    file_append(file_name, record);
+    return 0;
+  } else {
+    file_append("expense_logging_records",record);
+  }
+
   return 0;
 }
 
