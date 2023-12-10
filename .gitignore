@@ -11,6 +11,8 @@ docs
 /test3.bin
 /test4.bin
 /test5.bin
+/user.bin
+/usertest.bin
 
 ### C ###
 # Prerequisites

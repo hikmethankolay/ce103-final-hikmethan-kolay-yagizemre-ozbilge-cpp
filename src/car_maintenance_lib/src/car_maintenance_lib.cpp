@@ -283,31 +283,30 @@ int user_login(string username, string password, string user_file) {
   string password_read;
   string recovery_key_read;
   int count = 0;
+  char i;
   myFile.open(user_file, ios::in | ios::binary); // Opens file with input tag
 
-  if (myFile.is_open()) {
-    char i;
-
-    while (myFile.get(i)) {
-      if (i == '/') {
-        count++;
-        continue;
-      }
-
-      if (count == 0) {
-        username_read = username_read + i;
-      } else if (count == 1) {
-        password_read = password_read + i;
-      } else if (count == 2) {
-        break;
-      }
-    }
-
-    myFile.close();
-  } else {
+  if (!myFile.is_open()) {
     cout << "There is no user info, Please register first.\n";
     return -1;
   }
+
+  while (myFile.get(i)) {
+    if (i == '/') {
+      count++;
+      continue;
+    }
+
+    if (count == 0) {
+      username_read = username_read + i;
+    } else if (count == 1) {
+      password_read = password_read + i;
+    } else if (count == 2) {
+      break;
+    }
+  }
+
+  myFile.close();
 
   if (username == "None" && password == "None") {
     cout << "Please enter username:";
