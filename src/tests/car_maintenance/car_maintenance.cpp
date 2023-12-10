@@ -214,7 +214,44 @@ TEST_F(CarTest, TestDeleteService) {
 TEST_F(CarTest, TestDeleteServiceFail) {
   EXPECT_EQ(fail, delete_service_history_record("service_history_testfail.bin", 1));
 }
+/**
+ * @brief Tests the register_expense_record function
+ */
+TEST_F(CarTest, TestRegisterExpense) {
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE\n1-)Audi   10/10/2023   15000\n";
+  register_expense_record("expense_logging_records_test.bin", "Audi", "10/10/2023", 15000);
+  EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
+}
 
+/**
+ * @brief Tests the edit_service_history_record function
+ */
+TEST_F(CarTest, TestEditExpense) {
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE\n1-)Mercedes   11/11/2023   17000\n";
+  edit_expense_record("expense_logging_records_test.bin", 1,"Mercedes", "11/11/2023", 17000);
+  EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
+}
+/**
+ * @brief Tests the edit_service_history_record for fail case
+ */
+TEST_F(CarTest, TestEditExpenseFail) {
+  EXPECT_EQ(fail, edit_expense_record("service_history_testfailaaaa.bin", 1, "Audi", "10/10/2023", 15000));
+}
+
+/**
+ * @brief Tests the delete_service_history_record function
+ */
+TEST_F(CarTest, TestDeleteExpense) {
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE\n";
+  delete_expense_record("expense_logging_records_test.bin", 1);
+  EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
+}
+/**
+ * @brief Tests the delete_service_history_record for fail case
+ */
+TEST_F(CarTest, TestDeleteExpenseFail) {
+  EXPECT_EQ(fail, delete_expense_record("expense_logging_records_testaaa.bin", 1));
+}
 /**
  * @brief Main function to run the tests.
  */

@@ -600,46 +600,31 @@ int delete_maintenance_reminder_record() {
 int register_expense_record(string file_name, string car_model, string expense_date, int expense) {
   string record;
 
-  if (car_model == "None" && expense_date == "None" && expense == 1)
+  if (car_model == "None" && expense_date == "None" && expense == 1) {
     cout << "What is model of the car?";
+    cin >> car_model;
+    cout << "What is the expense date";
+    cin >> expense_date;
+    cout << "What is the expense";
+    cin >> expense;
 
-  cin >> car_model;
-
-  if (!std::cin.good()) { //checks if input is an integer
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Please use an integer\n";
-    return -1;
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
   }
 
-  cout << "What is the expense date";
-  cin >> expense_date;
-
-  if (!std::cin.good()) { //checks if input is an integer
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Please use an integer\n";
-    return -1;
-  }
-
-  cout << "What is the expense";
-  cin >> expense;
-
-  if (!std::cin.good()) { //checks if input is an integer
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Please use an integer\n";
-    return -1;
-  }
-
-  record = car_model + "    " + expense_date + "     " + to_string(expense);
+  record = car_model + "   " + expense_date + "   " + to_string(expense);
   myFile.open(file_name, ios::in | ios::binary);
 
-  if (myFile.is_open()) {
-    file_write(file_name, "CAR MODEL| EXPENSE DATE | EXPENSE |");
+  if (!myFile.is_open()) {
+    file_write(file_name, "CAR MODEL | EXPENSE DATE | EXPENSE");
     file_append(file_name, record);
     return 0;
   } else {
+    myFile.close();
     file_append("expense_logging_records", record);
   }
 
@@ -655,41 +640,33 @@ int register_expense_record(string file_name, string car_model, string expense_d
 int edit_expense_record(string file_name, int line_number_to_edit, string car_model, string expense_date, int expense) {
   string record;
 
-  if (car_model == "None" && expense_date == "None" && line_number_to_edit == 0 && expense == 1)
+  if (car_model == "None" && expense_date == "None" && line_number_to_edit == 0 && expense == 1) {
     cout << "Which line do you want to edit?";
+    cin >> line_number_to_edit;
 
-  cin >> line_number_to_edit;
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
 
-  if (!std::cin.good()) { //checks if input is an integer
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Please use an integer\n";
-    return -1;
+    cout << "What is model of the car ";
+    cin >> car_model;
+    cout << "What is the expense date";
+    cin >> expense_date;
+    cout << "What is the expense";
+    cin >> expense;
+
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
   }
 
-  cout << "What is model of the car ";
-  cin >> car_model;
-  cout << "What is the expense date";
-  cin >> expense_date;
-
-  if (!std::cin.good()) { //checks if input is an integer
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Please use an integer\n";
-    return -1;
-  }
-
-  cout << "What is the expense";
-  cin >> expense;
-
-  if (!std::cin.good()) { //checks if input is an integer
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    cout << "Please use an integer\n";
-    return -1;
-  }
-
-  record = car_model + "    " + expense_date + "     " + to_string(expense);
+  record = car_model + "   " + expense_date + "   " + to_string(expense);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
@@ -721,17 +698,17 @@ int delete_expense_record(string file_name, int line_number_to_delete) {
       cout << "Please use an integer\n";
       return -1;
     }
+  }
 
-    myFile.open(file_name, ios::in | ios::binary);
+  myFile.open(file_name, ios::in | ios::binary);
 
-    if (!myFile.is_open()) {
-      cout << "There is no record to delete";
-      return -1;
-    } else {
-      myFile.close();
-      file_line_delete(file_name, line_number_to_delete);
-      return 0;
-    }
+  if (!myFile.is_open()) {
+    cout << "There is no record to delete";
+    return -1;
+  } else {
+    myFile.close();
+    file_line_delete(file_name, line_number_to_delete);
+    return 0;
   }
 
   return 0;

@@ -144,6 +144,6 @@ int edit_expense_record(string file_name = "expense_logging_records.bin", int li
 * @return 0 on success.
 * @return -1 on fail.
 */
-int delete_expense_record(string file_name = "expense_logging_records.bin", int line_number_to_delete);
+int delete_expense_record(string file_name = "expense_logging_records.bin", int line_number_to_delete = 0);
 
 #endif // CAR_MAINTENANCE_LIB_H
