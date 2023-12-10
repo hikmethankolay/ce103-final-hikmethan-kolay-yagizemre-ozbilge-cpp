@@ -104,8 +104,11 @@ int main() {
                   file_read("expense_records.bin");
                   cout << "-------------------------------------------------------";
                 } else if (expense_menu == 2) {
+                  register_expense_record()
                 } else if (expense_menu == 3) {
+                  edit_expense_record()
                 } else if (expense_menu == 4) {
+                  delete_expense_record()
                 } else if (expense_menu == 5) {
                   continue;
                 }
