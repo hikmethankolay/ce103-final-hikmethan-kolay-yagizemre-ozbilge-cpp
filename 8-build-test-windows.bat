@@ -19,35 +19,66 @@ echo Folders are Recreated successfully.
 
 echo create bin files for unit tests
 
-echo 0-)TEXT STRING0> test1.bin
-echo 1-)TEXT STRING1>> test1.bin
-echo 2-)TEXT STRING2>> test1.bin
-echo 3-)TEXT STRING3>> test1.bin
-echo 4-)TEXT STRING4>> test1.bin
+setlocal enabledelayedexpansion
 
-echo 0-)TEXT STRING0> test2.bin
-echo 1-)TEXT STRING1>> test2.bin
-echo 2-)TEXT STRING2>> test2.bin
-echo 3-)TEXT STRING3>> test2.bin
-echo 4-)TEXT STRING4>> test2.bin
+echo|set /p="0-)TEXT STRING0" > test1.bin
+echo.>> test1.bin
+echo|set /p="1-)TEXT STRING1" >> test1.bin
+echo.>> test1.bin
+echo|set /p="2-)TEXT STRING2" >> test1.bin
+echo.>> test1.bin
+echo|set /p="3-)TEXT STRING3" >> test1.bin
+echo.>> test1.bin
+echo|set /p="4-)TEXT STRING4" >> test1.bin
+echo.>> test1.bin
 
-echo 0-)TEXT STRING0> test3.bin
-echo 1-)TEXT STRING1>> test3.bin
-echo 2-)TEXT STRING2>> test3.bin
-echo 3-)TEXT STRING3>> test3.bin
-echo 4-)TEXT STRING4>> test3.bin
+echo|set /p="0-)TEXT STRING0" > test2.bin
+echo.>> test2.bin
+echo|set /p="1-)TEXT STRING1" >> test2.bin
+echo.>> test2.bin
+echo|set /p="2-)TEXT STRING2" >> test2.bin
+echo.>> test2.bin
+echo|set /p="3-)TEXT STRING3" >> test2.bin
+echo.>> test2.bin
+echo|set /p="4-)TEXT STRING4" >> test2.bin
+echo.>> test2.bin
 
-echo 0-)TEXT STRING0> test4.bin
-echo 1-)TEXT STRING1>> test4.bin
-echo 2-)TEXT STRING2>> test4.bin
-echo 3-)TEXT STRING3>> test4.bin
-echo 4-)TEXT STRING4>> test4.bin
+echo|set /p="0-)TEXT STRING0" > test3.bin
+echo.>> test3.bin
+echo|set /p="1-)TEXT STRING1" >> test3.bin
+echo.>> test3.bin
+echo|set /p="2-)TEXT STRING2" >> test3.bin
+echo.>> test3.bin
+echo|set /p="3-)TEXT STRING3" >> test3.bin
+echo.>> test3.bin
+echo|set /p="4-)TEXT STRING4" >> test3.bin
+echo.>> test3.bin
 
-echo 0-)TEXT STRING0> test5.bin
-echo 1-)TEXT STRING1>> test5.bin
-echo 2-)TEXT STRING2>> test5.bin
-echo 3-)TEXT STRING3>> test5.bin
-echo 4-)TEXT STRING4>> test5.bin
+echo|set /p="0-)TEXT STRING0" > test4.bin
+echo.>> test4.bin
+echo|set /p="1-)TEXT STRING1" >> test4.bin
+echo.>> test4.bin
+echo|set /p="2-)TEXT STRING2" >> test4.bin
+echo.>> test4.bin
+echo|set /p="3-)TEXT STRING3" >> test4.bin
+echo.>> test4.bin
+echo|set /p="4-)TEXT STRING4" >> test4.bin
+echo.>> test4.bin
+
+echo|set /p="0-)TEXT STRING0" > test5.bin
+echo.>> test5.bin
+echo|set /p="1-)TEXT STRING1" >> test5.bin
+echo.>> test5.bin
+echo|set /p="2-)TEXT STRING2" >> test5.bin
+echo.>> test5.bin
+echo|set /p="3-)TEXT STRING3" >> test5.bin
+echo.>> test5.bin
+echo|set /p="4-)TEXT STRING4" >> test5.bin
+echo.>> test5.bin
+
+endlocal
+
+echo bin files created successfully
 
 echo Testing Application with Coverage
 echo Configure CMAKE

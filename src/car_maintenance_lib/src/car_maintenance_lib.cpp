@@ -21,7 +21,7 @@ fstream myFile;  /**< File stream object for file operations. */
  * @return 0 on success.
  */
 int file_write(string file_name, string text) {
-  text = "0-)" + text + "\r" + "\n";
+  text = "0-)" + text + "\n";
   myFile.open(file_name, ios::out | ios::binary | ios::trunc); // Opens file with output tag
   myFile.write(text.c_str(), text.length()); // Deletes everything inside file and writes text variable
   myFile.close();
@@ -43,6 +43,10 @@ string file_read(string file_name) {
     char i;
 
     while (myFile.get(i)) { // Takes all lines one by one and prints them to the console
+      if (i == '\r') {
+        continue;
+      }
+
       line = line + i;
     }
 
@@ -90,7 +94,7 @@ int file_append(string file_name, string text) {
 
   size_t pos = lastLine.find("-)"); // Finds the location of "-)" in the last line
   int lineNumber = stoi(lastLine.substr(0, pos)) + 1; // Finds the number for the appended line
-  text = to_string(lineNumber) + "-)" + text + "\r" + "\n";
+  text = to_string(lineNumber) + "-)" + text + "\n";
   myFile.open(file_name, ios::app | ios::binary); // Opens file with append tag
   myFile.write(text.c_str(), text.length()); // Appends text with its line number
   myFile.close();
@@ -130,7 +134,7 @@ int file_edit(string file_name, int line_number_to_edit, string new_line) {
     myFile.close();
 
     if (line_number_to_edit > 0 && line_number_to_edit <= line_count) {
-      lines[line_number_to_edit] = to_string(line_number_to_edit) + "-)" + new_line + "\r" + "\n"; // Changes a member of Lines array to a new line with its line number
+      lines[line_number_to_edit] = to_string(line_number_to_edit) + "-)" + new_line + "\n"; // Changes a member of Lines array to a new line with its line number
     } else {
       cout << "You can only edit existing lines\n";
       return -1;

@@ -27,7 +27,7 @@ int fail = -1;
  * @brief Tests the file_read function.
  */
 TEST_F(CarTest, TestFileRead) {
-  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING2\r\n3-)TEXT STRING3\r\n4-)TEXT STRING4\r\n";
+  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING2\n3-)TEXT STRING3\n4-)TEXT STRING4\n";
   EXPECT_EQ(testString, file_read("test1.bin"));
 }
 
@@ -35,7 +35,7 @@ TEST_F(CarTest, TestFileRead) {
  * @brief Tests the file_append function.
  */
 TEST_F(CarTest, TestFileAppend) {
-  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING2\r\n3-)TEXT STRING3\r\n4-)TEXT STRING4\r\n5-)TEXT STRING5\r\n";
+  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING2\n3-)TEXT STRING3\n4-)TEXT STRING4\n5-)TEXT STRING5\n";
   string appendString = "TEXT STRING5";
   file_append("test2.bin", appendString);
   EXPECT_EQ(testString, file_read("test2.bin"));
@@ -45,7 +45,7 @@ TEST_F(CarTest, TestFileAppend) {
  * @brief Tests the file_edit function.
  */
 TEST_F(CarTest, TestFileEdit) {
-  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING2\r\n3-)TEXT STRING EDIT\r\n4-)TEXT STRING4\r\n";
+  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING2\n3-)TEXT STRING EDIT\n4-)TEXT STRING4\n";
   string editString = "TEXT STRING EDIT";
   file_edit("test3.bin", 3, editString);
   EXPECT_EQ(testString, file_read("test3.bin"));
@@ -55,7 +55,7 @@ TEST_F(CarTest, TestFileEdit) {
  * @brief Tests the file_line_delete function.
  */
 TEST_F(CarTest, TestFileDelete) {
-  testString = "0-)TEXT STRING0\r\n1-)TEXT STRING1\r\n2-)TEXT STRING3\r\n3-)TEXT STRING4\r\n";
+  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING3\n3-)TEXT STRING4\n";
   file_line_delete("test4.bin", 2);
   EXPECT_EQ(testString, file_read("test4.bin"));
 }
@@ -64,7 +64,7 @@ TEST_F(CarTest, TestFileDelete) {
  * @brief Tests the file_write function.
  */
 TEST_F(CarTest, TestFileWrite) {
-  testString = "0-)TEXT STRING WRITE\r\n";
+  testString = "0-)TEXT STRING WRITE\n";
   string writeString = "TEXT STRING WRITE";
   file_write("test5.bin", writeString);
   EXPECT_EQ(testString, file_read("test5.bin"));
