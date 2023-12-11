@@ -702,18 +702,24 @@ int delete_expense_record(string file_name, int line_number_to_delete) {
   return 0;
 }
 
-int register_fuel_efficiency_record(string file_name,string car_model, int fuel_consumed, int road_traveled, int car_speed) {
+int register_fuel_efficiency_record(string file_name,string car_model, int fuel_consumed, int road_traveled) {
   string record;
 
-  if (car_model == "None" && fuel_consumed == 1 && road_traveled == 1 && car_speed == 1) {
+  if (car_model == "None" && fuel_consumed == 1 && road_traveled == 1) {
     cout << "What is model of the car?";
     cin >> car_model;
-    cout << "What is the fuel consumed";
+    cout << "What is the fuel consumed?(L)";
     cin >> fuel_consumed;
-    cout << "What is the road traveled?";
+
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
+
+    cout << "What is the road traveled?(KM)";
     cin >> road_traveled;
-    cout << "What is the car speed?";
-    cin >> car_speed;
 
     if (!std::cin.good()) { //checks if input is an integer
       std::cin.clear();
@@ -723,25 +729,25 @@ int register_fuel_efficiency_record(string file_name,string car_model, int fuel_
     }
   }
 
-  record = car_model + "   " + to_string(fuel_consumed) + "   " + to_string(road_traveled) + "   " + to_string(car_speed);
+  record = car_model + "   " + to_string(road_traveled/fuel_consumed);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
-    file_write(file_name, "CAR MODEL | FUEL CONSUMED | ROAD TRAVELED | CAR SPEED");
+    file_write(file_name, "CAR MODEL | FUEL CONSUMED(L/KM)");
     file_append(file_name, record);
     return 0;
   } else {
     myFile.close();
-    file_append("fuel_efficiency_records.bin", record);
+    file_append(file_name, record);
   }
 
   return 0;
 }
 
-int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string car_model, int fuel_consumed, int road_traveled, int car_speed) {
+int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string car_model, int fuel_consumed, int road_traveled) {
   string record;
 
-  if (car_model == "None" && line_number_to_edit == 1 && fuel_consumed == 1 && road_traveled == 1 && car_speed == 1) {
+  if (car_model == "None" && line_number_to_edit == 1 && fuel_consumed == 1 && road_traveled == 1) {
     cout << "Which line do you want to edit?";
     cin >> line_number_to_edit;
 
@@ -751,17 +757,31 @@ int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string
       cout << "Please use an integer\n";
       return -1;
     }
+
+    cout << "What is model of the car?";
+    cin >> car_model;
+    cout << "What is the fuel consumed";
+    cin >> fuel_consumed;
+
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
+
+    cout << "What is the road traveled?";
+    cin >> road_traveled;
+
+    if (!std::cin.good()) { //checks if input is an integer
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use an integer\n";
+      return -1;
+    }
   }
 
-  cout << "What is model of the car?";
-  cin >> car_model;
-  cout << "What is the fuel consumed";
-  cin >> fuel_consumed;
-  cout << "What is the road traveled?";
-  cin >> road_traveled;
-  cout << "What is the car speed?";
-  cin >> car_speed;
-  record = car_model + "   " + to_string(fuel_consumed) + "   " + to_string(road_traveled) + "   " + to_string(car_speed);
+  record = car_model + "   " + to_string(road_traveled/fuel_consumed);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
