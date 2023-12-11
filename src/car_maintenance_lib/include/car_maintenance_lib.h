@@ -147,4 +147,31 @@ int edit_expense_record(string file_name = "expense_logging_records.bin", int li
 */
 int delete_expense_record(string file_name = "expense_logging_records.bin", int line_number_to_delete = 0);
 
+/**
+ * @brief This function register records to maintenance_reminder_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int register_maintenance_reminder_record(string file_name ="maintenance_reminder_records.bin", string vehicle_model = "None", int service_km = 1, string service_type = "None");
+
+/**
+ * @brief This function edit the records in maintenance_reminder_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int edit_maintenance_reminder_record(string file_name = "maintenance_reminder_records.bin", int line_number_to_edit = 0, string vehicle_model = "None", int service_km = 1,
+                                     string service_type = "None");
+
+/**
+ * @brief This function delete the records in maintenance_reminder_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
+int delete_maintenance_reminder_record(string file_name = "maintenance_reminder_records.bin", int line_number_to_delete = 0);
 #endif // CAR_MAINTENANCE_LIB_H

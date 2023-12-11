@@ -241,7 +241,7 @@ int user_register(string new_username, string new_password, string new_recovery_
   string login_info;
 
   if (choice == "None") {
-    cout << "Do you understand that if you create a new account all the records that have been saved so far will be deleted?[Y/N]";
+    cout << "Do you understand that if you create a new account all the records that have been saved so far will be deleted?[Y/N]:";
     cin >> choice;
   }
 
@@ -403,7 +403,7 @@ int user_change_password(string recovery_key, string new_password, string user_f
 int register_service_history_record(string file_name, string vehicle_model, int service_km, string service_provider, int service_cost) {
   string record;
 
-  if (vehicle_model == "None" && service_km == 1 && service_provider == "a" && service_cost == 1) {
+  if (vehicle_model == "None" && service_km == 1 && service_provider == "None" && service_cost == 1) {
     cout << "What is the model of vehilce?";
     cin >> vehicle_model;
 
@@ -445,7 +445,7 @@ int register_service_history_record(string file_name, string vehicle_model, int 
     file_append(file_name,record);
     return 0;
   } else {
-    file_append("service_history_records.bin", record);
+    file_append(file_name, record);
     return 0;
   }
 
@@ -551,7 +551,38 @@ int delete_service_history_record(string file_name, int line_number_to_delete) {
  * @return 0 on success.
  * @return -1 on fail.
  */
-int register_maintenance_reminder_record() {
+int register_maintenance_reminder_record(string file_name, string vehicle_model, int service_km, string service_type) {
+  string record;
+
+  if (vehicle_model == "None" && service_km == 1 && service_type == "None") {
+    cout << "What is the model of vehilce?";
+    cin >> vehicle_model;
+    cout << "What is the service KM?";
+    cin >> service_km;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "Who is the planned service type?";
+    cin >> service_type;
+  }
+
+  record = vehicle_model + "   " + to_string(service_km) + "   " + service_type;
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    file_write(file_name, "VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE");
+    file_append(file_name, record);
+    return 0;
+  } else {
+    file_append(file_name, record);
+    return 0;
+  }
+
   return 0;
 }
 /**
@@ -561,7 +592,48 @@ int register_maintenance_reminder_record() {
  * @return 0 on success.
  * @return -1 on fail.
  */
-int edit_maintenance_reminder_record() {
+int edit_maintenance_reminder_record(string file_name, int line_number_to_edit, string vehicle_model, int service_km, string service_type) {
+  string record;
+
+  if (vehicle_model == "None" && service_km == 1 && service_type == "None" && line_number_to_edit == 0) {
+    cout << "Which line do you wasn to edit?";
+    cin >> line_number_to_edit;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "What is the model of vehilce?";
+    cin >> vehicle_model;
+    cout << "What is the service KM?";
+    cin >> service_km;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+
+    cout << "Who is the planned service type?";
+    cin >> service_type;
+  }
+
+  record = vehicle_model + "   " + to_string(service_km) + "   " + service_type;
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    cout << "There is no record to edit.";
+    return -1;
+  } else {
+    myFile.close();
+    file_edit(file_name, line_number_to_edit, record);
+    return 0;
+  }
+
   return 0;
 }
 /**
@@ -571,7 +643,30 @@ int edit_maintenance_reminder_record() {
  * @return 0 on success.
  * @return -1 on fail.
  */
-int delete_maintenance_reminder_record() {
+int delete_maintenance_reminder_record(string file_name, int line_number_to_delete) {
+  if (line_number_to_delete == 0) {
+    cout << "Which line do you wasn to delete?";
+    cin >> line_number_to_delete;
+
+    if (!std::cin.good()) { //checks if input is integer.
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Please use a intreger\n";
+      return -1;
+    }
+  }
+
+  myFile.open(file_name, ios::in | ios::binary);
+
+  if (!myFile.is_open()) {
+    cout << "There is no record to delete.";
+    return -1;
+  } else {
+    myFile.close();
+    file_line_delete(file_name, line_number_to_delete);
+    return 0;
+  }
+
   return 0;
 }
 /**
