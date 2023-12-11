@@ -252,6 +252,46 @@ TEST_F(CarTest, TestDeleteExpense) {
 TEST_F(CarTest, TestDeleteExpenseFail) {
   EXPECT_EQ(fail, delete_expense_record("expense_logging_records_testaaa.bin", 1));
 }
+
+/**
+ * @brief Tests the register_maintenance_reminder_record function
+ */
+TEST_F(CarTest, TestRegisterReminder) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n1-)Audi   1000   Brake\n";
+  register_maintenance_reminder_record("reminder_logging_records_test.bin","Audi",1000,"Brake");
+  EXPECT_EQ(testString, file_read("reminder_logging_records_test.bin"));
+}
+
+/**
+ * @brief Tests the edit_maintenance_reminder_record function
+ */
+TEST_F(CarTest, TestEditReminder) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n1-)Mercedes   1100   Oil\n";
+  edit_maintenance_reminder_record("reminder_logging_records_test.bin",1,"Mercedes", 1100, "Oil");
+  EXPECT_EQ(testString, file_read("reminder_logging_records_test.bin"));
+}
+/**
+ * @brief Tests the edit_service_history_record for fail case
+ */
+TEST_F(CarTest, TestEditReminderFail) {
+  EXPECT_EQ(fail, edit_maintenance_reminder_record("reminder_logging_records_testaaa.bin", 1));
+}
+
+/**
+ * @brief Tests the delete_service_history_record function
+ */
+TEST_F(CarTest, TestDeleteReminder) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n";
+  delete_maintenance_reminder_record("reminder_logging_records_test.bin",1);
+  EXPECT_EQ(testString, file_read("reminder_logging_records_test.bin"));
+}
+/**
+ * @brief Tests the delete_service_history_record for fail case
+ */
+TEST_F(CarTest, TestDeleteReminderFail) {
+  EXPECT_EQ(fail, delete_maintenance_reminder_record("reminder_logging_records_testaaaa.bin", 1));
+}
+
 /**
  * @brief Main function to run the tests.
  */
