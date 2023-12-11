@@ -8,6 +8,10 @@
 #include <fstream>
 #include "../../car_maintenance_lib/include/car_maintenance_lib.h"  // Adjust this include path based on your project structure
 
+/**
+ * @brief Creating a object for car reminder system.
+ *
+ */
 fstream File;
 
 
@@ -153,8 +157,14 @@ int main() {
                   file_read("fuel_efficiency_records.bin");
                   cout << "-------------------------------------------------------\n";
                 } else if (fuel_efficiency_menu == 2) {
+                  register_fuel_efficiency_record();
+                  continue;
                 } else if (fuel_efficiency_menu == 3) {
+                  edit_fuel_efficiency_record();
+                  continue;
                 } else if (fuel_efficiency_menu == 4) {
+                  delete_fuel_efficiency_record();
+                  continue;
                 } else if (fuel_efficiency_menu == 5) {
                   continue;
                 }

@@ -797,7 +797,7 @@ int delete_expense_record(string file_name, int line_number_to_delete) {
   return 0;
 }
 
-int register_fuel_efficiency_record(string file_name,string car_model, int fuel_consumed, int road_traveled) {
+int register_fuel_efficiency_record(string file_name,string car_model, float fuel_consumed, float road_traveled) {
   string record;
 
   if (car_model == "None" && fuel_consumed == 1 && road_traveled == 1) {
@@ -824,11 +824,12 @@ int register_fuel_efficiency_record(string file_name,string car_model, int fuel_
     }
   }
 
-  record = car_model + "   " + to_string(road_traveled/fuel_consumed);
+  float efficiency = (fuel_consumed / road_traveled) * 100;
+  record = car_model + "   " + to_string(efficiency);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
-    file_write(file_name, "CAR MODEL | FUEL CONSUMED(L/KM)");
+    file_write(file_name, "CAR MODEL | FUEL CONSUMED(L/100KM)");
     file_append(file_name, record);
     return 0;
   } else {
@@ -839,7 +840,7 @@ int register_fuel_efficiency_record(string file_name,string car_model, int fuel_
   return 0;
 }
 
-int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string car_model, int fuel_consumed, int road_traveled) {
+int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string car_model, float fuel_consumed, float road_traveled) {
   string record;
 
   if (car_model == "None" && line_number_to_edit == 1 && fuel_consumed == 1 && road_traveled == 1) {
@@ -876,7 +877,8 @@ int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string
     }
   }
 
-  record = car_model + "   " + to_string(road_traveled/fuel_consumed);
+  float efficiency = (fuel_consumed / road_traveled) * 100;
+  record = car_model + "   " + to_string(efficiency);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {

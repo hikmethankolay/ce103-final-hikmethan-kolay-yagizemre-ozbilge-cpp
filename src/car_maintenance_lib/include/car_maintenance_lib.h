@@ -129,7 +129,7 @@ int delete_service_history_record(string file_name = "service_history_records.bi
 int register_expense_record(string file_name = "expense_logging_records.bin", string car_model = "None", string expense_date = "None", string expense_type = "None", int expense = 1);
 
 /**
-* @brief This function edit the records in maintenance_reminder_records.bin.
+* @brief This function edit the records in expense_logging_records.bin.
 *
 *
 * @return 0 on success.
@@ -139,7 +139,7 @@ int edit_expense_record(string file_name = "expense_logging_records.bin", int li
                         int expense = 1);
 
 /**
-* @brief This function delete the records in maintenance_reminder_records.bin.
+* @brief This function delete the records in expense_logging_records.bin.
 *
 *
 * @return 0 on success.
@@ -175,25 +175,25 @@ int edit_maintenance_reminder_record(string file_name = "maintenance_reminder_re
  */
 int delete_maintenance_reminder_record(string file_name = "maintenance_reminder_records.bin", int line_number_to_delete = 0);
 /**
-* @brief This function edit the records in maintenance_reminder_records.bin.
+* @brief This function register records to fuel_efficiency_records.bin.
 *
 *
 * @return 0 on success.
 * @return -1 on fail.
 */
-int register_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", string car_model = "None", int fuel_consumed = 1, int road_traveled = 1);
+int register_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", string car_model = "None", float fuel_consumed = 1, float road_traveled = 1);
 
 /**
-* @brief This function edit the records in maintenance_reminder_records.bin.
+* @brief This function edit the records in fuel_efficiency_records.bin.
 *
 *
 * @return 0 on success.
 * @return -1 on fail.
 */
-int edit_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", int line_number_to_edit = 0, string car_model = "None", int fuel_consumed = 1, int road_traveled = 1);
+int edit_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", int line_number_to_edit = 0, string car_model = "None", float fuel_consumed = 1, float road_traveled = 1);
 
 /**
-* @brief This function edit the records in maintenance_reminder_records.bin.
+* @brief This function delete the records in fuel_efficiency_records.bin.
 *
 *
 * @return 0 on success.
