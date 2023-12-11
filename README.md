@@ -60,7 +60,41 @@ Run 7-build-app-linux.sh to build, test and generate packed binaries for your ap
 
 You can run 9-clean-project.bat to clean project outputs. 
 
+### Functionalities
+In menu, user can see, register, update, delete a record he wants. Crop records and livestock records are contained separately which makes updating and following these records easy. If update function chosen from menu user can change any line he wants with ease even there is a million records. Same thing goes for delete function as well, user can delete a specified line or whole record if he/she wants. There is also a User Authentication system, nobody without correct username and password can access these records.
+These records contains information as below:
 
+### Carm Management System: 
+
+1)Service History Tracking
+
+	o	Vehicle’s Model
+	o	Vehicle’s service km
+	o	Service Provider
+	o	Service Cost
+
+
+2-)Maintenance Reminders
+
+	o	Vehicle’s Model
+	o	Vehicle’s service km
+	o	Service Type
+
+3-)Expense Logging
+
+	o	Vehicle’s Model
+	o	Expense Type
+	o	Expense Date
+	o	Cost
+
+
+4-)Fuel Efficiency Reports
+
+	o	Vehicle’s Model
+	o	L/100KM Fuel consumption
+
+### Testing and Validation
+We tested and documented whole system with gtest and Ctest. It has %100 coverage test and %100 success at unit test results
 
 ## Supported Platforms
 
