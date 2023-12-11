@@ -5,7 +5,11 @@
  */
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "../../car_maintenance_lib/include/car_maintenance_lib.h"  // Adjust this include path based on your project structure
+
+fstream File;
+
 
 using namespace std;
 /**
@@ -33,6 +37,15 @@ int main() {
     switch (login_menu) {
       case 1: {
         if (user_login() == 0) {
+          File.open("maintenance_reminder_records.bin", ios::in | ios::binary);
+
+          if (File.is_open()) {
+            cout << "\n------------You Have Scheduled Maintenance------------\n";
+            file_read("maintenance_reminder_records.bin");
+            cout << "-------------------------------------------------------\n";
+            File.close();
+          }
+
           do {
             cout << "\n----------Main Menu----------\n";
             cout << "1-)Service History Tracking\n";
@@ -55,9 +68,9 @@ int main() {
                 cin >> service_menu;
 
                 if (service_menu == 1) {
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                   file_read("service_history_records.bin");
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                 } else if (service_menu == 2) {
                   register_service_history_record();
                   continue;
@@ -82,12 +95,18 @@ int main() {
                 cin >> maintenance_reminder_menu;
 
                 if (maintenance_reminder_menu == 1) {
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                   file_read("maintenance_reminder_records.bin");
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                 } else if (maintenance_reminder_menu == 2) {
+                  register_maintenance_reminder_record();
+                  continue;
                 } else if (maintenance_reminder_menu == 3) {
+                  edit_maintenance_reminder_record();
+                  continue;
                 } else if (maintenance_reminder_menu == 4) {
+                  delete_maintenance_reminder_record();
+                  continue;
                 } else if (service_menu == 5) {
                   continue;
                 }
@@ -103,9 +122,9 @@ int main() {
                 cin >> expense_menu;
 
                 if (expense_menu == 1) {
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                   file_read("expense_records.bin");
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                 } else if (expense_menu == 2) {
                   register_expense_record();
                   continue;
@@ -130,9 +149,9 @@ int main() {
                 cin >> fuel_efficiency_menu;
 
                 if (fuel_efficiency_menu == 1) {
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                   file_read("fuel_efficiency_records.bin");
-                  cout << "-------------------------------------------------------";
+                  cout << "-------------------------------------------------------\n";
                 } else if (fuel_efficiency_menu == 2) {
                 } else if (fuel_efficiency_menu == 3) {
                 } else if (fuel_efficiency_menu == 4) {
@@ -142,6 +161,7 @@ int main() {
 
               case 5:
                 run = false;
+                break;
 
               default:
                 break;
