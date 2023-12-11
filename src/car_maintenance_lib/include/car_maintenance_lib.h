@@ -98,7 +98,7 @@ int user_change_password(string recovery_key = "None", string new_password = "No
  * @return 0 on success.
  * @return -1 on fail.
  */
-int register_service_history_record(string file_name = "service_history_records.bin", string vehicle_model = "None", int service_km = 1, int next_service_km = 1, int service_cost = 1);
+int register_service_history_record(string file_name = "service_history_records.bin", string vehicle_model = "None", int service_km = 1, string service_provider = "None", int service_cost = 1);
 
 /**
  * @brief This function edit the records in service_history_records.bin.
@@ -107,7 +107,7 @@ int register_service_history_record(string file_name = "service_history_records.
  * @return 0 on success.
  * @return -1 on fail.
  */
-int edit_service_history_record(string file_name = "service_history_records.bin", int line_number_to_edit = 0, string vehicle_model = "None", int service_km = 1, int next_service_km = 1,
+int edit_service_history_record(string file_name = "service_history_records.bin", int line_number_to_edit = 0, string vehicle_model = "None", int service_km = 1, string service_provider = "None",
                                 int service_cost = 1);
 
 /**
@@ -126,7 +126,7 @@ int delete_service_history_record(string file_name = "service_history_records.bi
  * @return 0 on success.
  * @return -1 on fail.
  */
-int register_expense_record(string file_name = "expense_logging_records.bin", string car_model = "None", string expense_date = "None", int expense = 1);
+int register_expense_record(string file_name = "expense_logging_records.bin", string car_model = "None", string expense_date = "None", string expense_type = "None", int expense = 1);
 
 /**
 * @brief This function edit the records in maintenance_reminder_records.bin.
@@ -135,7 +135,8 @@ int register_expense_record(string file_name = "expense_logging_records.bin", st
 * @return 0 on success.
 * @return -1 on fail.
 */
-int edit_expense_record(string file_name = "expense_logging_records.bin", int line_number_to_edit = 0, string car_model = "None", string expense_date = "None", int expense = 1);
+int edit_expense_record(string file_name = "expense_logging_records.bin", int line_number_to_edit = 0, string car_model = "None", string expense_date = "None", string expense_type = "None",
+                        int expense = 1);
 
 /**
 * @brief This function delete the records in maintenance_reminder_records.bin.

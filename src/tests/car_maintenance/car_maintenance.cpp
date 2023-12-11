@@ -180,8 +180,8 @@ TEST_F(CarTest, TestUserChangePasswordFail_2) {
  * @brief Tests the register_service_history_record function
  */
 TEST_F(CarTest, TestRegisterService) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST\n1-)Audi   10500   15500   1500\n";
-  register_service_history_record("service_history_test.bin","Audi",10500,15500,1500);
+  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n1-)Audi   10500   Service   1500\n";
+  register_service_history_record("service_history_test.bin","Audi",10500,"Service",1500);
   EXPECT_EQ(testString,file_read("service_history_test.bin"));
 }
 
@@ -189,22 +189,22 @@ TEST_F(CarTest, TestRegisterService) {
  * @brief Tests the edit_service_history_record function
  */
 TEST_F(CarTest, TestEditService) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST\n1-)Mercedes   12500   17500   1700\n";
-  edit_service_history_record("service_history_test.bin", 1, "Mercedes", 12500, 17500, 1700);
+  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n1-)Mercedes   12500   Service   1700\n";
+  edit_service_history_record("service_history_test.bin", 1, "Mercedes", 12500, "Service", 1700);
   EXPECT_EQ(testString, file_read("service_history_test.bin"));
 }
 /**
  * @brief Tests the edit_service_history_record for fail case
  */
 TEST_F(CarTest, TestEditServiceFail) {
-  EXPECT_EQ(fail, edit_service_history_record("service_history_testfail.bin", 1, "Mercedes", 12500, 17500, 1700));
+  EXPECT_EQ(fail, edit_service_history_record("service_history_testfail.bin", 1, "Mercedes", 12500, "Service", 1700));
 }
 
 /**
  * @brief Tests the delete_service_history_record function
  */
 TEST_F(CarTest, TestDeleteService) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST\n";
+  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n";
   delete_service_history_record("service_history_test.bin", 1);
   EXPECT_EQ(testString, file_read("service_history_test.bin"));
 }
@@ -218,8 +218,8 @@ TEST_F(CarTest, TestDeleteServiceFail) {
  * @brief Tests the register_expense_record function
  */
 TEST_F(CarTest, TestRegisterExpense) {
-  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE\n1-)Audi   10/10/2023   15000\n";
-  register_expense_record("expense_logging_records_test.bin", "Audi", "10/10/2023", 15000);
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n1-)Audi   10/10/2023   Brake   15000\n";
+  register_expense_record("expense_logging_records_test.bin", "Audi", "10/10/2023", "Brake", 15000);
   EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
 }
 
@@ -227,22 +227,22 @@ TEST_F(CarTest, TestRegisterExpense) {
  * @brief Tests the edit_service_history_record function
  */
 TEST_F(CarTest, TestEditExpense) {
-  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE\n1-)Mercedes   11/11/2023   17000\n";
-  edit_expense_record("expense_logging_records_test.bin", 1,"Mercedes", "11/11/2023", 17000);
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n1-)Mercedes   11/11/2023   Oil   17000\n";
+  edit_expense_record("expense_logging_records_test.bin", 1,"Mercedes", "11/11/2023", "Oil", 17000);
   EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
 }
 /**
  * @brief Tests the edit_service_history_record for fail case
  */
 TEST_F(CarTest, TestEditExpenseFail) {
-  EXPECT_EQ(fail, edit_expense_record("service_history_testfailaaaa.bin", 1, "Audi", "10/10/2023", 15000));
+  EXPECT_EQ(fail, edit_expense_record("service_history_testfailaaaa.bin", 1, "Audi", "10/10/2023", "Brake", 15000));
 }
 
 /**
  * @brief Tests the delete_service_history_record function
  */
 TEST_F(CarTest, TestDeleteExpense) {
-  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE\n";
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n";
   delete_expense_record("expense_logging_records_test.bin", 1);
   EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
 }

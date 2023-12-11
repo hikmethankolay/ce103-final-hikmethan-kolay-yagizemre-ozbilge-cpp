@@ -400,10 +400,10 @@ int user_change_password(string recovery_key, string new_password, string user_f
  * @return 0 on success.
  * @return -1 on fail.
  */
-int register_service_history_record(string file_name,string vehicle_model, int service_km, int next_service_km, int service_cost) {
+int register_service_history_record(string file_name, string vehicle_model, int service_km, string service_provider, int service_cost) {
   string record;
 
-  if (vehicle_model == "None" && service_km == 1 && next_service_km == 1 && service_cost == 1) {
+  if (vehicle_model == "None" && service_km == 1 && service_provider == "a" && service_cost == 1) {
     cout << "What is the model of vehilce?";
     cin >> vehicle_model;
 
@@ -424,16 +424,8 @@ int register_service_history_record(string file_name,string vehicle_model, int s
       return -1;
     }
 
-    cout << "What is the next service KM?";
-    cin >> next_service_km;
-
-    if (!std::cin.good()) { //checks if input is integer.
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      cout << "Please use a intreger\n";
-      return -1;
-    }
-
+    cout << "Who is the service provider?";
+    cin >> service_provider;
     cout << "What is the service cost?";
     cin >> service_cost;
 
@@ -445,11 +437,11 @@ int register_service_history_record(string file_name,string vehicle_model, int s
     }
   }
 
-  record = vehicle_model + "   " + to_string(service_km) + "   " + to_string(next_service_km) + "   " + to_string(service_cost);
+  record = vehicle_model + "   " + to_string(service_km) + "   " + service_provider + "   " + to_string(service_cost);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
-    file_write(file_name, "VEHICLE MODEL | SERVICE KM | NEXT SERVICE KM | SERVICE COST");
+    file_write(file_name, "VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST");
     file_append(file_name,record);
     return 0;
   } else {
@@ -466,10 +458,10 @@ int register_service_history_record(string file_name,string vehicle_model, int s
  * @return 0 on success.
  * @return -1 on fail.
  */
-int edit_service_history_record(string file_name, int line_number_to_edit, string vehicle_model, int service_km, int next_service_km, int service_cost) {
+int edit_service_history_record(string file_name, int line_number_to_edit, string vehicle_model, int service_km, string service_provider, int service_cost) {
   string record;
 
-  if (vehicle_model == "None" && line_number_to_edit == 0 && service_km == 1 && next_service_km == 1 && service_cost == 1) {
+  if (vehicle_model == "None" && line_number_to_edit == 0 && service_km == 1 && service_provider == "None" && service_cost == 1) {
     cout << "Which line do you wasn to edit?";
     cin >> line_number_to_edit;
 
@@ -492,16 +484,8 @@ int edit_service_history_record(string file_name, int line_number_to_edit, strin
       return -1;
     }
 
-    cout << "What is the next service KM?";
-    cin >> next_service_km;
-
-    if (!std::cin.good()) { //checks if input is integer.
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      cout << "Please use a intreger\n";
-      return -1;
-    }
-
+    cout << "Who is the service provider?";
+    cin >> service_provider;
     cout << "What is the service cost?";
     cin >> service_cost;
 
@@ -513,7 +497,7 @@ int edit_service_history_record(string file_name, int line_number_to_edit, strin
     }
   }
 
-  record = vehicle_model + "   " + to_string(service_km) + "   " + to_string(next_service_km) + "   " + to_string(service_cost);
+  record = vehicle_model + "   " + to_string(service_km) + "   " + service_provider + "   " + to_string(service_cost);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
@@ -597,15 +581,17 @@ int delete_maintenance_reminder_record() {
  * @return 0 on success.
  * @return -1 on fail.
  */
-int register_expense_record(string file_name, string car_model, string expense_date, int expense) {
+int register_expense_record(string file_name, string car_model, string expense_date, string expense_type, int expense) {
   string record;
 
-  if (car_model == "None" && expense_date == "None" && expense == 1) {
+  if (car_model == "None" && expense_date == "None" && expense == 1 && expense_type == "None") {
     cout << "What is model of the car?";
     cin >> car_model;
     cout << "What is the expense date";
     cin >> expense_date;
-    cout << "What is the expense";
+    cout << "What is the expense type?";
+    cin >> expense_type;
+    cout << "What is the expense cost?";
     cin >> expense;
 
     if (!std::cin.good()) { //checks if input is an integer
@@ -616,11 +602,11 @@ int register_expense_record(string file_name, string car_model, string expense_d
     }
   }
 
-  record = car_model + "   " + expense_date + "   " + to_string(expense);
+  record = car_model + "   " + expense_date + "   " + expense_type + "   " + to_string(expense);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
-    file_write(file_name, "CAR MODEL | EXPENSE DATE | EXPENSE");
+    file_write(file_name, "CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE");
     file_append(file_name, record);
     return 0;
   } else {
@@ -637,10 +623,10 @@ int register_expense_record(string file_name, string car_model, string expense_d
 * @return 0 on success.
 * @return -1 on fail.
 */
-int edit_expense_record(string file_name, int line_number_to_edit, string car_model, string expense_date, int expense) {
+int edit_expense_record(string file_name, int line_number_to_edit, string car_model, string expense_date, string expense_type, int expense) {
   string record;
 
-  if (car_model == "None" && expense_date == "None" && line_number_to_edit == 0 && expense == 1) {
+  if (car_model == "None" && expense_date == "None" && line_number_to_edit == 0 && expense == 1 && expense_type == "None") {
     cout << "Which line do you want to edit?";
     cin >> line_number_to_edit;
 
@@ -655,7 +641,9 @@ int edit_expense_record(string file_name, int line_number_to_edit, string car_mo
     cin >> car_model;
     cout << "What is the expense date";
     cin >> expense_date;
-    cout << "What is the expense";
+    cout << "What is the expense type?";
+    cin >> expense_type;
+    cout << "What is the expense cost?";
     cin >> expense;
 
     if (!std::cin.good()) { //checks if input is an integer
@@ -666,7 +654,7 @@ int edit_expense_record(string file_name, int line_number_to_edit, string car_mo
     }
   }
 
-  record = car_model + "   " + expense_date + "   " + to_string(expense);
+  record = car_model + "   " + expense_date + "   " + expense_type + "   " + to_string(expense);
   myFile.open(file_name, ios::in | ios::binary);
 
   if (!myFile.is_open()) {
