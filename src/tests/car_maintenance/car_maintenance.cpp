@@ -1,27 +1,50 @@
 /**
- * @file car_test.cpp
- * @brief Unit tests for the car maintenance library functions.
+ * @file car_maintenance.cpp
+ * @brief Car maintenance unit tests for lib.
+ *
  */
 
+/**
+ * @brief variable to enable tests.
+ */
 #define ENABLE_TESTS  // Uncomment this line to enable the tests
-
 #include "../../tests/googletest/googletest/include/gtest/gtest.h"
 #include "../../car_maintenance_lib/include/car_maintenance_lib.h"  // Adjust this include path based on your project structure
+/**
+* @brief including std to use strings with ease.
+*/
 using namespace std;
 
+/**
+ * @brief Tests.
+ */
 class CarTest : public ::testing::Test {
  protected:
+  /**
+   * @brief Setup test data.
+   */
   void SetUp() override {
     // Setup test data
   }
-
+  /**
+   * @brief Clean up test data.
+   */
   void TearDown() override {
     // Clean up test data
   }
 };
 
+/**
+ * @brief Variables for tests.
+ */
 string testString;
+/**
+ * @brief Variables for tests.
+ */
 int fail = -1;
+/**
+ * @brief Variables for tests.
+ */
 int success = 0;
 
 /**
@@ -292,6 +315,9 @@ TEST_F(CarTest, TestDeleteReminderFail) {
   EXPECT_EQ(fail, delete_maintenance_reminder_record("reminder_logging_records_testaaaa.bin", 1));
 }
 
+/**
+ * @brief Tests the register_fuel_efficiency_record function
+ */
 TEST_F(CarTest, TestRegisterFuel) {
   testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n1-)BWM   5.000000\n";
   register_fuel_efficiency_record("fuel_efficiency_records_test.bin", "BWM", 50, 1000);
@@ -299,7 +325,7 @@ TEST_F(CarTest, TestRegisterFuel) {
 }
 
 /**
- * @brief Tests the edit_maintenance_reminder_record function
+ * @brief Tests the edit_fuel_efficiency_record function
  */
 TEST_F(CarTest, TestEditFuel) {
   testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n1-)Audi   6.000000\n";
@@ -307,14 +333,14 @@ TEST_F(CarTest, TestEditFuel) {
   EXPECT_EQ(testString, file_read("fuel_efficiency_records_test.bin"));
 }
 /**
- * @brief Tests the edit_service_history_record for fail case
+ * @brief Tests the edit_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestEditFuelFail) {
   EXPECT_EQ(fail, edit_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1));
 }
 
 /**
- * @brief Tests the delete_service_history_record function
+ * @brief Tests the delete_fuel_efficiency_record function
  */
 TEST_F(CarTest, TestDeleteFuel) {
   testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n";
@@ -322,7 +348,7 @@ TEST_F(CarTest, TestDeleteFuel) {
   EXPECT_EQ(testString, file_read("fuel_efficiency_records_test.bin"));
 }
 /**
- * @brief Tests the delete_service_history_record for fail case
+ * @brief Tests the delete_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestDeleteFuelFail) {
   EXPECT_EQ(fail, delete_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1));

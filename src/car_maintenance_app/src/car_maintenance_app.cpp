@@ -75,6 +75,7 @@ int main() {
                   cout << "-------------------------------------------------------\n";
                   file_read("service_history_records.bin");
                   cout << "-------------------------------------------------------\n";
+                  continue;
                 } else if (service_menu == 2) {
                   register_service_history_record();
                   continue;
@@ -87,6 +88,8 @@ int main() {
                 } else if (service_menu == 5) {
                   continue;
                 }
+
+                continue;
 
               case 2:
                 cout << "\n----------Maintenance Reminder Records----------\n";
@@ -102,6 +105,7 @@ int main() {
                   cout << "-------------------------------------------------------\n";
                   file_read("maintenance_reminder_records.bin");
                   cout << "-------------------------------------------------------\n";
+                  continue;
                 } else if (maintenance_reminder_menu == 2) {
                   register_maintenance_reminder_record();
                   continue;
@@ -114,6 +118,8 @@ int main() {
                 } else if (service_menu == 5) {
                   continue;
                 }
+
+                continue;
 
               case 3:
                 cout << "\n----------Expense Tracking Records----------\n";
@@ -129,6 +135,7 @@ int main() {
                   cout << "-------------------------------------------------------\n";
                   file_read("expense_records.bin");
                   cout << "-------------------------------------------------------\n";
+                  continue;
                 } else if (expense_menu == 2) {
                   register_expense_record();
                   continue;
@@ -141,6 +148,8 @@ int main() {
                 } else if (expense_menu == 5) {
                   continue;
                 }
+
+                continue;
 
               case 4:
                 cout << "\n----------Fuel Efficiency Records----------\n";
@@ -156,6 +165,7 @@ int main() {
                   cout << "-------------------------------------------------------\n";
                   file_read("fuel_efficiency_records.bin");
                   cout << "-------------------------------------------------------\n";
+                  continue;
                 } else if (fuel_efficiency_menu == 2) {
                   register_fuel_efficiency_record();
                   continue;
@@ -168,6 +178,8 @@ int main() {
                 } else if (fuel_efficiency_menu == 5) {
                   continue;
                 }
+
+                continue;
 
               case 5:
                 run = false;
