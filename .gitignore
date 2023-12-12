@@ -13,6 +13,7 @@ docs
 /test5.bin
 /user.bin
 /usertest.bin
+*_test.bin
 
 ### C ###
 # Prerequisites
