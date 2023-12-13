@@ -64,6 +64,7 @@ rd /S /Q "docs\doxygenliblinux"
 rd /S /Q "docs\doxygentestlinux"
 rd /S /Q "docs\testresultswin"
 rd /S /Q "docs\testresultslinux"
+rd /S /Q "docs"
 
 echo Delete the "site" folder and its contents
 rd /S /Q "site"
