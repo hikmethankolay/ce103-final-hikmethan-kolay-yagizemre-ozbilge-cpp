@@ -787,6 +787,7 @@ int register_fuel_efficiency_record(string file_name,string car_model, float fue
   } else {
     myFile.close();
     file_append(file_name, record);
+    return 0;
   }
 }
 
