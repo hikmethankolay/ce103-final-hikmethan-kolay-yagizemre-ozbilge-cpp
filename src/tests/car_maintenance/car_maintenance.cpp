@@ -79,8 +79,8 @@ TEST_F(CarTest, TestFileEdit) {
  * @brief Tests the file_line_delete function.
  */
 TEST_F(CarTest, TestFileDelete) {
-  testString = "0-)TEXT STRING0\n1-)TEXT STRING1\n2-)TEXT STRING3\n3-)TEXT STRING4\n";
-  file_line_delete("test4.bin", 2);
+  testString = "0-)TEXT STRING0\n1-)TEXT STRING2\n2-)TEXT STRING3\n3-)TEXT STRING4\n";
+  file_line_delete("test4.bin", 1);
   EXPECT_EQ(testString, file_read("test4.bin"));
 }
 
