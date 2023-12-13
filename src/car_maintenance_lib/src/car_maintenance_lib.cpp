@@ -707,7 +707,7 @@ int register_expense_record(string file_name, string car_model, string expense_d
     return 0;
   } else {
     myFile.close();
-    file_append("expense_logging_records", record);
+    file_append(file_name, record);
   }
 
   return 0;
@@ -844,7 +844,7 @@ int register_fuel_efficiency_record(string file_name,string car_model, float fue
 int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string car_model, float fuel_consumed, float road_traveled) {
   string record;
 
-  if (car_model == "None" && line_number_to_edit == 1 && fuel_consumed == 1 && road_traveled == 1) {
+  if (car_model == "None" && line_number_to_edit == 0 && fuel_consumed == 1 && road_traveled == 1) {
     cout << "Which line do you want to edit?";
     cin >> line_number_to_edit;
 
