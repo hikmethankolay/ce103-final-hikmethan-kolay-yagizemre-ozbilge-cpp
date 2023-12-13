@@ -43,7 +43,7 @@ string file_read(string file_name) {
   if (myFile.is_open()) {
     char i;
 
-    while (myFile.get(i)) { // Takes all lines one by one and prints them to the console
+    while (myFile.get(i)) { // Takes all ASCII characters one by one and add them to line string.
       if (i == '\r') {
         continue;
       }
