@@ -30,6 +30,7 @@ int main() {
     int maintenance_reminder_menu;
     int expense_menu;
     int fuel_efficiency_menu;
+    int reminder_count = 0;
     cout << "----------Login----------\n";
     cout << "1-)Login\n";
     cout << "2-)Register\n";
@@ -41,16 +42,19 @@ int main() {
     switch (login_menu) {
       case 1: {
         if (user_login() == 0) {
-          File.open("maintenance_reminder_records.bin", ios::in | ios::binary);
-
-          if (File.is_open()) {
-            cout << "\n------------You Have Scheduled Maintenance------------\n";
-            file_read("maintenance_reminder_records.bin");
-            cout << "-------------------------------------------------------\n";
-            File.close();
-          }
-
           do {
+            if(reminder_count == 0) {
+              File.open("maintenance_reminder_records.bin", ios::in | ios::binary);
+
+              if (File.is_open()) {
+                cout << "\n------------You Have Scheduled Maintenance------------\n";
+                file_read("maintenance_reminder_records.bin");
+                cout << "-------------------------------------------------------\n";
+                File.close();
+                reminder_count++;
+              }
+            }
+
             cout << "\n----------Main Menu----------\n";
             cout << "1-)Service History Tracking\n";
             cout << "2-)Maintenance Reminders\n";
@@ -87,9 +91,9 @@ int main() {
                   continue;
                 } else if (service_menu == 5) {
                   continue;
+                } else {
+                  continue;
                 }
-
-                continue;
 
               case 2:
                 cout << "\n----------Maintenance Reminder Records----------\n";
@@ -117,9 +121,9 @@ int main() {
                   continue;
                 } else if (service_menu == 5) {
                   continue;
+                } else {
+                  continue;
                 }
-
-                continue;
 
               case 3:
                 cout << "\n----------Expense Tracking Records----------\n";
@@ -147,9 +151,9 @@ int main() {
                   continue;
                 } else if (expense_menu == 5) {
                   continue;
+                } else {
+                  continue;
                 }
-
-                continue;
 
               case 4:
                 cout << "\n----------Fuel Efficiency Records----------\n";
@@ -177,9 +181,9 @@ int main() {
                   continue;
                 } else if (fuel_efficiency_menu == 5) {
                   continue;
+                } else {
+                  continue;
                 }
-
-                continue;
 
               case 5:
                 run = false;
