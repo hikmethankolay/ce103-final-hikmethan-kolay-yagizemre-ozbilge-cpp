@@ -407,14 +407,6 @@ int register_service_history_record(string file_name, string vehicle_model, int 
   if (vehicle_model == "None" && service_km == 1 && service_provider == "None" && service_cost == 1) {
     cout << "What is the model of vehilce?";
     cin >> vehicle_model;
-
-    if (!std::cin.good()) { //checks if input is integer.
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      cout << "Please use a intreger\n";
-      return -1;
-    }
-
     cout << "What is the service KM?";
     cin >> service_km;
 
@@ -499,17 +491,7 @@ int edit_service_history_record(string file_name, int line_number_to_edit, strin
   }
 
   record = vehicle_model + "   " + to_string(service_km) + "   " + service_provider + "   " + to_string(service_cost);
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to edit.";
-    return -1;
-  } else {
-    myFile.close();
-    file_edit(file_name,line_number_to_edit,record);
-    return 0;
-  }
-
+  file_edit(file_name,line_number_to_edit,record);
   return 0;
 }
 /**
@@ -532,17 +514,7 @@ int delete_service_history_record(string file_name, int line_number_to_delete) {
     }
   }
 
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to delete.";
-    return -1;
-  } else {
-    myFile.close();
-    file_line_delete(file_name, line_number_to_delete);
-    return 0;
-  }
-
+  file_line_delete(file_name, line_number_to_delete);
   return 0;
 }
 /**
@@ -624,17 +596,7 @@ int edit_maintenance_reminder_record(string file_name, int line_number_to_edit, 
   }
 
   record = vehicle_model + "   " + to_string(service_km) + "   " + service_type;
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to edit.";
-    return -1;
-  } else {
-    myFile.close();
-    file_edit(file_name, line_number_to_edit, record);
-    return 0;
-  }
-
+  file_edit(file_name, line_number_to_edit, record);
   return 0;
 }
 /**
@@ -657,17 +619,7 @@ int delete_maintenance_reminder_record(string file_name, int line_number_to_dele
     }
   }
 
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to delete.";
-    return -1;
-  } else {
-    myFile.close();
-    file_line_delete(file_name, line_number_to_delete);
-    return 0;
-  }
-
+  file_line_delete(file_name, line_number_to_delete);
   return 0;
 }
 /**
@@ -751,17 +703,7 @@ int edit_expense_record(string file_name, int line_number_to_edit, string car_mo
   }
 
   record = car_model + "   " + expense_date + "   " + expense_type + "   " + to_string(expense);
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to edit";
-    return -1;
-  } else {
-    myFile.close();
-    file_edit(file_name, line_number_to_edit, record);
-    return 0;
-  }
-
+  file_edit(file_name, line_number_to_edit, record);
   return 0;
 }
 /**
@@ -784,17 +726,7 @@ int delete_expense_record(string file_name, int line_number_to_delete) {
     }
   }
 
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to delete";
-    return -1;
-  } else {
-    myFile.close();
-    file_line_delete(file_name, line_number_to_delete);
-    return 0;
-  }
-
+  file_line_delete(file_name, line_number_to_delete);
   return 0;
 }
 
@@ -880,17 +812,7 @@ int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string
 
   float efficiency = (fuel_consumed / road_traveled) * 100;
   record = car_model + "   " + to_string(efficiency);
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout<<"There is no record edit";
-    return -1;
-  }   else {
-    myFile.close();
-    file_edit(file_name, line_number_to_edit, record);
-    return 0;
-  }
-
+  file_edit(file_name, line_number_to_edit, record);
   return 0;
 }
 
@@ -907,16 +829,6 @@ int delete_fuel_efficiency_record(string file_name, int line_number_to_delete) {
     }
   }
 
-  myFile.open(file_name, ios::in | ios::binary);
-
-  if (!myFile.is_open()) {
-    cout << "There is no record to delete";
-    return -1;
-  } else {
-    myFile.close();
-    file_line_delete(file_name, line_number_to_delete);
-    return 0;
-  }
-
+  file_line_delete(file_name, line_number_to_delete);
   return 0;
 }

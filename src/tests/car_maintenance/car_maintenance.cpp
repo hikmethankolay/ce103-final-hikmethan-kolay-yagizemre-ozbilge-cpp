@@ -209,10 +209,18 @@ TEST_F(CarTest, TestRegisterService) {
 }
 
 /**
+ * @brief Tests the register_service_history_record function
+ */
+TEST_F(CarTest, TestRegisterService_2) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n1-)Audi   10500   Service   1500\n2-)Ferrari   12500   Service   1900\n";
+  register_service_history_record("service_history_test.bin","Ferrari",12500,"Service",1900);
+  EXPECT_EQ(testString,file_read("service_history_test.bin"));
+}
+/**
  * @brief Tests the edit_service_history_record function
  */
 TEST_F(CarTest, TestEditService) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n1-)Mercedes   12500   Service   1700\n";
+  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n1-)Mercedes   12500   Service   1700\n2-)Ferrari   12500   Service   1900\n";
   edit_service_history_record("service_history_test.bin", 1, "Mercedes", 12500, "Service", 1700);
   EXPECT_EQ(testString, file_read("service_history_test.bin"));
 }
@@ -222,12 +230,17 @@ TEST_F(CarTest, TestEditService) {
 TEST_F(CarTest, TestEditServiceFail) {
   EXPECT_EQ(fail, edit_service_history_record("service_history_testfail.bin", 1, "Mercedes", 12500, "Service", 1700));
 }
-
+/**
+ * @brief Tests the edit_service_history_record for fail case
+ */
+TEST_F(CarTest, TestEditServiceFail_2) {
+  EXPECT_EQ(fail, edit_service_history_record("service_history_test.bin", 7, "Mercedes", 12500, "Service", 1700));
+}
 /**
  * @brief Tests the delete_service_history_record function
  */
 TEST_F(CarTest, TestDeleteService) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n";
+  testString = "0-)VEHICLE MODEL | SERVICE KM | SERVICE PROVIDER | SERVICE COST\n1-)Ferrari   12500   Service   1900\n";
   delete_service_history_record("service_history_test.bin", 1);
   EXPECT_EQ(testString, file_read("service_history_test.bin"));
 }
@@ -238,6 +251,12 @@ TEST_F(CarTest, TestDeleteServiceFail) {
   EXPECT_EQ(fail, delete_service_history_record("service_history_testfail.bin", 1));
 }
 /**
+ * @brief Tests the delete_service_history_record for fail case
+ */
+TEST_F(CarTest, TestDeleteServiceFail_2) {
+  EXPECT_EQ(fail, delete_service_history_record("service_history_test.bin", 9));
+}
+/**
  * @brief Tests the register_expense_record function
  */
 TEST_F(CarTest, TestRegisterExpense) {
@@ -245,12 +264,19 @@ TEST_F(CarTest, TestRegisterExpense) {
   register_expense_record("expense_logging_records_test.bin", "Audi", "10/10/2023", "Brake", 15000);
   EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
 }
-
+/**
+ * @brief Tests the register_expense_record function
+ */
+TEST_F(CarTest, TestRegisterExpense) {
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n1-)Audi   10/10/2023   Brake   15000\n2-)Ferrai   11/11/2023   Oil   19000\n";
+  register_expense_record("expense_logging_records_test.bin", "Ferrai", "11/11/2023", "Oil", 19000);
+  EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
+}
 /**
  * @brief Tests the edit_service_history_record function
  */
 TEST_F(CarTest, TestEditExpense) {
-  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n1-)Mercedes   11/11/2023   Oil   17000\n";
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n1-)Mercedes   11/11/2023   Oil   17000\n2-)Ferrai   11/11/2023   Oil   19000\n";
   edit_expense_record("expense_logging_records_test.bin", 1,"Mercedes", "11/11/2023", "Oil", 17000);
   EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
 }
@@ -258,14 +284,19 @@ TEST_F(CarTest, TestEditExpense) {
  * @brief Tests the edit_service_history_record for fail case
  */
 TEST_F(CarTest, TestEditExpenseFail) {
-  EXPECT_EQ(fail, edit_expense_record("service_history_testfailaaaa.bin", 1, "Audi", "10/10/2023", "Brake", 15000));
+  EXPECT_EQ(fail, edit_expense_record("expense_logging_records_testaaa.bin", 1, "Audi", "10/10/2023", "Brake", 15000));
 }
-
+/**
+ * @brief Tests the edit_service_history_record for fail case
+ */
+TEST_F(CarTest, TestEditExpenseFail_2) {
+  EXPECT_EQ(fail, edit_expense_record("expense_logging_records_test.bin", 8, "Audi", "10/10/2023", "Brake", 15000));
+}
 /**
  * @brief Tests the delete_service_history_record function
  */
 TEST_F(CarTest, TestDeleteExpense) {
-  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n";
+  testString = "0-)CAR MODEL | EXPENSE DATE | EXPENSE TYPE | EXPENSE\n1-)Ferrai   11/11/2023   Oil   19000\n";
   delete_expense_record("expense_logging_records_test.bin", 1);
   EXPECT_EQ(testString, file_read("expense_logging_records_test.bin"));
 }
@@ -275,7 +306,12 @@ TEST_F(CarTest, TestDeleteExpense) {
 TEST_F(CarTest, TestDeleteExpenseFail) {
   EXPECT_EQ(fail, delete_expense_record("expense_logging_records_testaaa.bin", 1));
 }
-
+/**
+ * @brief Tests the delete_service_history_record for fail case
+ */
+TEST_F(CarTest, TestDeleteExpenseFail_2) {
+  EXPECT_EQ(fail, delete_expense_record("expense_logging_records_test.bin", 7));
+}
 /**
  * @brief Tests the register_maintenance_reminder_record function
  */
@@ -286,10 +322,19 @@ TEST_F(CarTest, TestRegisterReminder) {
 }
 
 /**
+ * @brief Tests the register_maintenance_reminder_record function
+ */
+TEST_F(CarTest, TestRegisterReminder) {
+  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n1-)Audi   1000   Brake\n2-)Ferrai   2000   Brake\n";
+  register_maintenance_reminder_record("reminder_logging_records_test.bin","Ferrai",2000,"Brake");
+  EXPECT_EQ(testString, file_read("reminder_logging_records_test.bin"));
+}
+
+/**
  * @brief Tests the edit_maintenance_reminder_record function
  */
 TEST_F(CarTest, TestEditReminder) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n1-)Mercedes   1100   Oil\n";
+  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n1-)Mercedes   1100   Oil\n2-)Ferrai   2000   Brake\n";
   edit_maintenance_reminder_record("reminder_logging_records_test.bin",1,"Mercedes", 1100, "Oil");
   EXPECT_EQ(testString, file_read("reminder_logging_records_test.bin"));
 }
@@ -297,14 +342,19 @@ TEST_F(CarTest, TestEditReminder) {
  * @brief Tests the edit_service_history_record for fail case
  */
 TEST_F(CarTest, TestEditReminderFail) {
-  EXPECT_EQ(fail, edit_maintenance_reminder_record("reminder_logging_records_testaaa.bin", 1));
+  EXPECT_EQ(fail, edit_maintenance_reminder_record("reminder_logging_records_testaaa.bin", 1,"Mercedes", 1100, "Oil"));
 }
-
+/**
+ * @brief Tests the edit_service_history_record for fail case
+ */
+TEST_F(CarTest, TestEditReminderFail_2) {
+  EXPECT_EQ(fail, edit_maintenance_reminder_record("reminder_logging_records_test.bin", 6,"Mercedes", 1100, "Oil"));
+}
 /**
  * @brief Tests the delete_service_history_record function
  */
 TEST_F(CarTest, TestDeleteReminder) {
-  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n";
+  testString = "0-)VEHICLE MODEL | SERVICE KM | PLANNED SERVICE TYPE\n1-)Ferrai   2000   Brake\n";
   delete_maintenance_reminder_record("reminder_logging_records_test.bin",1);
   EXPECT_EQ(testString, file_read("reminder_logging_records_test.bin"));
 }
@@ -313,6 +363,13 @@ TEST_F(CarTest, TestDeleteReminder) {
  */
 TEST_F(CarTest, TestDeleteReminderFail) {
   EXPECT_EQ(fail, delete_maintenance_reminder_record("reminder_logging_records_testaaaa.bin", 1));
+}
+
+/**
+ * @brief Tests the delete_service_history_record for fail case
+ */
+TEST_F(CarTest, TestDeleteReminderFail_2) {
+  EXPECT_EQ(fail, delete_maintenance_reminder_record("reminder_logging_records_test.bin", 6));
 }
 
 /**
@@ -325,10 +382,19 @@ TEST_F(CarTest, TestRegisterFuel) {
 }
 
 /**
+ * @brief Tests the register_fuel_efficiency_record function
+ */
+TEST_F(CarTest, TestRegisterFuel_2) {
+  testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n1-)BWM   5.000000\n2-)Ferrai   8.000000\n";
+  register_fuel_efficiency_record("fuel_efficiency_records_test.bin", "Ferrai", 80, 1000);
+  EXPECT_EQ(testString, file_read("fuel_efficiency_records_test.bin"));
+}
+
+/**
  * @brief Tests the edit_fuel_efficiency_record function
  */
 TEST_F(CarTest, TestEditFuel) {
-  testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n1-)Audi   6.000000\n";
+  testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n1-)Audi   6.000000\n2-)Ferrai   8.000000\n";
   edit_fuel_efficiency_record("fuel_efficiency_records_test.bin",1, "Audi", 60, 1000);
   EXPECT_EQ(testString, file_read("fuel_efficiency_records_test.bin"));
 }
@@ -336,14 +402,21 @@ TEST_F(CarTest, TestEditFuel) {
  * @brief Tests the edit_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestEditFuelFail) {
-  EXPECT_EQ(fail, edit_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1));
+  EXPECT_EQ(fail, edit_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1,"Audi", 60, 1000));
+}
+
+/**
+ * @brief Tests the edit_fuel_efficiency_record for fail case
+ */
+TEST_F(CarTest, TestEditFuelFail_2) {
+  EXPECT_EQ(fail, edit_maintenance_reminder_record("fuel_efficiency_records_test.bin", 6,"Audi", 60, 1000));
 }
 
 /**
  * @brief Tests the delete_fuel_efficiency_record function
  */
 TEST_F(CarTest, TestDeleteFuel) {
-  testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n";
+  testString = "0-)CAR MODEL | FUEL CONSUMED(L/100KM)\n1-)Ferrai   8.000000\n";
   delete_fuel_efficiency_record("fuel_efficiency_records_test.bin",1);
   EXPECT_EQ(testString, file_read("fuel_efficiency_records_test.bin"));
 }
@@ -352,6 +425,13 @@ TEST_F(CarTest, TestDeleteFuel) {
  */
 TEST_F(CarTest, TestDeleteFuelFail) {
   EXPECT_EQ(fail, delete_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1));
+}
+
+/**
+ * @brief Tests the delete_fuel_efficiency_record for fail case
+ */
+TEST_F(CarTest, TestDeleteFuelFail_2) {
+  EXPECT_EQ(fail, delete_maintenance_reminder_record("fuel_efficiency_records_test.bin", 5));
 }
 
 /**
