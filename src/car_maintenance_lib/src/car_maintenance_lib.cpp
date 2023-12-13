@@ -390,12 +390,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
   }
 
   /**
-   * @brief This function register records to service_history_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function register records to service_history_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int register_service_history_record(string file_name, string vehicle_model, int service_km, string service_provider, int service_cost) {
     string record;
 
@@ -441,12 +441,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
     return 0;
   }
   /**
-   * @brief This function edit the records in service_history_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function edit the records in service_history_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int edit_service_history_record(string file_name, int line_number_to_edit, string vehicle_model, int service_km, string service_provider, int service_cost) {
     string record;
 
@@ -495,12 +495,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
     }
   }
   /**
-   * @brief This function delete the records in service_history_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function delete the records in service_history_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int delete_service_history_record(string file_name, int line_number_to_delete) {
     if (line_number_to_delete == 0) {
       cout << "Which line do you wasn to delete?";
@@ -521,12 +521,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
     }
   }
   /**
-   * @brief This function register records to maintenance_reminder_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function register records to maintenance_reminder_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int register_maintenance_reminder_record(string file_name, string vehicle_model, int service_km, string service_type) {
     string record;
 
@@ -563,12 +563,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
     return 0;
   }
   /**
-   * @brief This function edit the records in maintenance_reminder_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function edit the records in maintenance_reminder_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int edit_maintenance_reminder_record(string file_name, int line_number_to_edit, string vehicle_model, int service_km, string service_type) {
     string record;
 
@@ -608,12 +608,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
     }
   }
   /**
-   * @brief This function delete the records in maintenance_reminder_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function delete the records in maintenance_reminder_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int delete_maintenance_reminder_record(string file_name, int line_number_to_delete) {
     if (line_number_to_delete == 0) {
       cout << "Which line do you wasn to delete?";
@@ -634,12 +634,12 @@ int user_change_password(string recovery_key, string new_password, string user_f
     }
   }
   /**
-   * @brief This function register records to expense_logging_records.bin.
-   *
-   *
-   * @return 0 on success.
-   * @return -1 on fail.
-   */
+    * @brief This function register records to expense_logging_records.bin.
+    *
+    *
+    * @return 0 on success.
+    * @return -1 on fail.
+    */
   int register_expense_record(string file_name, string car_model, string expense_date, string expense_type, int expense) {
     string record;
 
