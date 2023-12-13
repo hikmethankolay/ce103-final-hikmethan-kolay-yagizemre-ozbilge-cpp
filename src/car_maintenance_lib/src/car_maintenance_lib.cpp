@@ -319,10 +319,8 @@ int user_login(string username, string password, string user_file) {
   if (username == username_read && password == password_read) {
     cout << "Login Succesfull";
     return 0;
-  } else if (username != username_read || password != password_read) {
-    cout << "Wrong username or password";
-    return -1;
   } else {
+    cout << "Wrong username or password";
     return -1;
   }
 }
@@ -386,10 +384,8 @@ int user_change_password(string recovery_key, string new_password, string user_f
     myFile.close();
     cout << "Password changed succesfully";
     return 0;
-  } else if (recovery_key_read != recovery_key) {
-    cout << "Wrong Recovery Key";
-    return -1;
   } else {
+    cout << "Wrong Recovery Key";
     return -1;
   }
 }
