@@ -404,14 +404,14 @@ TEST_F(CarTest, TestEditFuel) {
  * @brief Tests the edit_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestEditFuelFail) {
-  EXPECT_EQ(fail, edit_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1,"Audi", 60, "Oil"));
+  EXPECT_EQ(fail, edit_fuel_efficiency_record("fuel_efficiency_records_testaaa.bin", 1,"Audi", 60, "Oil"));
 }
 
 /**
  * @brief Tests the edit_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestEditFuelFail_2) {
-  EXPECT_EQ(fail, edit_maintenance_reminder_record("fuel_efficiency_records_test.bin", 6,"Audi", 60, "Oil"));
+  EXPECT_EQ(fail, edit_fuel_efficiency_record("fuel_efficiency_records_test.bin", 6,"Audi", 60, "Oil"));
 }
 
 /**
@@ -426,14 +426,14 @@ TEST_F(CarTest, TestDeleteFuel) {
  * @brief Tests the delete_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestDeleteFuelFail) {
-  EXPECT_EQ(fail, delete_maintenance_reminder_record("fuel_efficiency_records_testaaa.bin", 1));
+  EXPECT_EQ(fail, delete_fuel_efficiency_record("fuel_efficiency_records_testaaa.bin", 1));
 }
 
 /**
  * @brief Tests the delete_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestDeleteFuelFail_2) {
-  EXPECT_EQ(fail, delete_maintenance_reminder_record("fuel_efficiency_records_test.bin", 5));
+  EXPECT_EQ(fail, delete_fuel_efficiency_record("fuel_efficiency_records_test.bin", 5));
 }
 
 /**
