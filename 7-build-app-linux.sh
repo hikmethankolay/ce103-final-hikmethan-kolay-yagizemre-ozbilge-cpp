@@ -75,7 +75,7 @@ cmake --build build_linux --config Release -j4
 cmake --install build_linux --strip
 echo "Test CMAKE"
 
-cp -r "$currentDir/original_test_files/"* "$currentDir/build_win/src/tests/car_maintenance/"
+cp -r "$currentDir/original_test_files/"* "$currentDir/build_linux/src/tests/car_maintenance/"
 
 cd build_linux
 # ctest -C Debug -j4 --output-on-failure --output-log test_results_linux.log
