@@ -27,68 +27,7 @@ mkdir doxygentestwin
 mkdir testresultswin
 cd ..
 
-echo create bin files for unit tests
-
-setlocal enabledelayedexpansion
-
-echo|set /p="0-)TEXT STRING0" > test1.bin
-echo.>> test1.bin
-echo|set /p="1-)TEXT STRING1" >> test1.bin
-echo.>> test1.bin
-echo|set /p="2-)TEXT STRING2" >> test1.bin
-echo.>> test1.bin
-echo|set /p="3-)TEXT STRING3" >> test1.bin
-echo.>> test1.bin
-echo|set /p="4-)TEXT STRING4" >> test1.bin
-echo.>> test1.bin
-
-echo|set /p="0-)TEXT STRING0" > test2.bin
-echo.>> test2.bin
-echo|set /p="1-)TEXT STRING1" >> test2.bin
-echo.>> test2.bin
-echo|set /p="2-)TEXT STRING2" >> test2.bin
-echo.>> test2.bin
-echo|set /p="3-)TEXT STRING3" >> test2.bin
-echo.>> test2.bin
-echo|set /p="4-)TEXT STRING4" >> test2.bin
-echo.>> test2.bin
-
-echo|set /p="0-)TEXT STRING0" > test3.bin
-echo.>> test3.bin
-echo|set /p="1-)TEXT STRING1" >> test3.bin
-echo.>> test3.bin
-echo|set /p="2-)TEXT STRING2" >> test3.bin
-echo.>> test3.bin
-echo|set /p="3-)TEXT STRING3" >> test3.bin
-echo.>> test3.bin
-echo|set /p="4-)TEXT STRING4" >> test3.bin
-echo.>> test3.bin
-
-echo|set /p="0-)TEXT STRING0" > test4.bin
-echo.>> test4.bin
-echo|set /p="1-)TEXT STRING1" >> test4.bin
-echo.>> test4.bin
-echo|set /p="2-)TEXT STRING2" >> test4.bin
-echo.>> test4.bin
-echo|set /p="3-)TEXT STRING3" >> test4.bin
-echo.>> test4.bin
-echo|set /p="4-)TEXT STRING4" >> test4.bin
-echo.>> test4.bin
-
-echo|set /p="0-)TEXT STRING0" > test5.bin
-echo.>> test5.bin
-echo|set /p="1-)TEXT STRING1" >> test5.bin
-echo.>> test5.bin
-echo|set /p="2-)TEXT STRING2" >> test5.bin
-echo.>> test5.bin
-echo|set /p="3-)TEXT STRING3" >> test5.bin
-echo.>> test5.bin
-echo|set /p="4-)TEXT STRING4" >> test5.bin
-echo.>> test5.bin
-
-endlocal
-
-echo bin files created successfully
+xcopy /E /I /Y "%currentDir%\original_test_files" "%currentDir%"
 
 echo Create the "site" folder and its contents
 mkdir site
@@ -135,11 +74,8 @@ rem call cmake --install build_win --strip
 start "Install Debug" cmake --install build_win --config Debug --strip
 start "Install Release" cmake --install build_win --config Release --strip
 
-copy test1.bin build_win\src\tests\car_maintenance
-copy test2.bin build_win\src\tests\car_maintenance
-copy test3.bin build_win\src\tests\car_maintenance
-copy test4.bin build_win\src\tests\car_maintenance
-copy test5.bin build_win\src\tests\car_maintenance
+
+xcopy /E /I /Y "%currentDir%\original_test_files" "%currentDir%\build_win\src\tests\car_maintenance"
 
 echo Test CMAKE
 cd build_win
@@ -198,11 +134,8 @@ echo Package Publish Debug Windows Binaries
 call robocopy src\car_maintenance_lib\include "build_win\build\Debug" /E
 call robocopy src\car_maintenance_app\include "build_win\build\Debug" /E
 
-copy test1.bin publish_win\bin
-copy test2.bin publish_win\bin
-copy test3.bin publish_win\bin
-copy test4.bin publish_win\bin
-copy test5.bin publish_win\bin
+
+xcopy /E /I /Y "%currentDir%\original_test_files" "%currentDir%\publish_win\bin"
 
 tar -czvf release_win\windows-debug-binaries.tar.gz -C build_win\build\Debug .
 
@@ -223,6 +156,19 @@ tar -czvf release_win\windows-doxygen-test-documentation.tar.gz -C docs\doxygent
 
 echo Package Publish Test Results Report
 tar -czvf release_win\windows-test-results-report.tar.gz -C docs\testresultswin .
+
+del test1.bin
+del test2.bin
+del test3.bin
+del test4.bin
+del test5.bin
+del usertest.bin
+del user.bin
+del *_records.bin
+del *_test.bin
+del *_test_2.bin
+del *_test_3.bin
+del *_test_4.bin
 
 echo ....................
 echo Operation Completed!
