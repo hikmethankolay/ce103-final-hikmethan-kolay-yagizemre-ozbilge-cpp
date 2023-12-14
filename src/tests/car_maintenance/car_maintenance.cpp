@@ -404,14 +404,14 @@ TEST_F(CarTest, TestEditFuel) {
  * @brief Tests the edit_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestEditFuelFail) {
-  EXPECT_EQ(fail, edit_fuel_efficiency_record("fuel_efficiency_records_testaaa.bin", 1,"Audi", 60, "Oil"));
+  EXPECT_EQ(fail, edit_fuel_efficiency_record("fuel_efficiency_records_testaaa.bin", 1,"Mercedes",2.0f,2.0f));
 }
 
 /**
  * @brief Tests the edit_fuel_efficiency_record for fail case
  */
 TEST_F(CarTest, TestEditFuelFail_2) {
-  EXPECT_EQ(fail, edit_fuel_efficiency_record("fuel_efficiency_records_test.bin", 6,"Audi", 60, "Oil"));
+  EXPECT_EQ(fail, edit_fuel_efficiency_record("fuel_efficiency_records_test.bin", 6,"Mercedes",2.0f,2.0f));
 }
 
 /**
