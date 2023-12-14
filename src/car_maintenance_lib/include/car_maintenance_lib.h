@@ -181,7 +181,7 @@ int delete_maintenance_reminder_record(string file_name = "maintenance_reminder_
 * @return 0 on success.
 * @return -1 on fail.
 */
-int register_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", string car_model = "None", float fuel_consumed = 1, float road_traveled = 1);
+int register_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", string car_model = "None", float fuel_consumed = 1.0f, float road_traveled = 1.0f);
 
 /**
 * @brief This function edit the records in fuel_efficiency_records.bin.
@@ -190,7 +190,7 @@ int register_fuel_efficiency_record(string file_name = "fuel_efficiency_records.
 * @return 0 on success.
 * @return -1 on fail.
 */
-int edit_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", int line_number_to_edit = 0, string car_model = "None", float fuel_consumed = 1, float road_traveled = 1);
+int edit_fuel_efficiency_record(string file_name = "fuel_efficiency_records.bin", int line_number_to_edit = 0, string car_model = "None", float fuel_consumed = 1.0f, float road_traveled = 1.0f);
 
 /**
 * @brief This function delete the records in fuel_efficiency_records.bin.
