@@ -744,7 +744,13 @@ int delete_expense_record(string file_name, int line_number_to_delete) {
     return -1;
   }
 }
-
+/**
+ * @brief This function register records to fuel_efficiency_records.bin.
+ *
+ *
+ * @return 0 on success.
+ * @return -1 on fail.
+ */
 int register_fuel_efficiency_record(string file_name,string car_model, float fuel_consumed, float road_traveled) {
   string record;
 
@@ -786,7 +792,13 @@ int register_fuel_efficiency_record(string file_name,string car_model, float fue
     return 0;
   }
 }
-
+/**
+* @brief This function edit the records in fuel_efficiency_records.bin.
+*
+*
+* @return 0 on success.
+* @return -1 on fail.
+*/
 int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string car_model, float fuel_consumed, float road_traveled) {
   string record;
 
@@ -834,6 +846,13 @@ int edit_fuel_efficiency_record(string file_name,int line_number_to_edit, string
   }
 }
 
+/**
+* @brief This function delete the records in fuel_efficiency_records.bin.
+*
+*
+* @return 0 on success.
+* @return -1 on fail.
+*/
 int delete_fuel_efficiency_record(string file_name, int line_number_to_delete) {
   if (line_number_to_delete == 0) {
     cout << "Which line do you want to delete?";
