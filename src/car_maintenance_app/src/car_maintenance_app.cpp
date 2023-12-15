@@ -42,6 +42,8 @@ int main() {
     switch (login_menu) {
       case 1: {
         if (user_login() == 0) {
+          bool run_2 = true;
+
           do {
             if(reminder_count == 0) {
               File.open("maintenance_reminder_records.bin", ios::in | ios::binary);
@@ -60,7 +62,7 @@ int main() {
             cout << "2-)Maintenance Reminders\n";
             cout << "3-)Expense Logging\n";
             cout << "4-)Fuel Efficiency Reports\n";
-            cout << "5-)Exit\n";
+            cout << "5-)Back to login menu\n";
             cout << "Make a choice(1-5):";
             cin >> main_menu;
 
@@ -186,13 +188,13 @@ int main() {
                 }
 
               case 5:
-                run = false;
+                run_2 = false;
                 break;
 
               default:
                 break;
             }
-          } while (run);
+          } while (run_2);
         } else {
           continue;
         }
