@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-12-15_14-49-38" tag="">
+  <assembly name="Default">
+    <class name="C:\Users\hikme\Desktop\Git\ce103-final-hikmethan-kolay-yagizemre-ozbilge-cpp\src\tests\car_maintenance\car_maintenance.cpp" coveredlines="61" coverablelines="61" totallines="449" coveredbranches="0" totalbranches="0" coveredcodeelements="0" totalcodeelements="0" />
+  </assembly>
+</coverage>

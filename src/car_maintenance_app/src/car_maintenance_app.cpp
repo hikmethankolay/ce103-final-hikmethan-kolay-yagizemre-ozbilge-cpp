@@ -139,7 +139,7 @@ int main() {
 
                 if (expense_menu == 1) {
                   cout << "-------------------------------------------------------\n";
-                  file_read("expense_records.bin");
+                  file_read("expense_logging_records.bin");
                   cout << "-------------------------------------------------------\n";
                   continue;
                 } else if (expense_menu == 2) {
