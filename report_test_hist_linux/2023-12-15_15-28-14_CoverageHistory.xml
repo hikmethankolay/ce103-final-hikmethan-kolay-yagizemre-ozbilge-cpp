@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-12-15_15-28-14" tag="">
+  <assembly name="Default">
+    <class name="/mnt/c/Users/hikme/Desktop/Git/ce103-final-hikmethan-kolay-yagizemre-ozbilge-cpp/src/car_maintenance_app/src/car_maintenance_app.cpp" coveredlines="155" coverablelines="157" totallines="223" coveredbranches="183" totalbranches="309" coveredcodeelements="1" totalcodeelements="1" />
+    <class name="/mnt/c/Users/hikme/Desktop/Git/ce103-final-hikmethan-kolay-yagizemre-ozbilge-cpp/src/car_maintenance_lib/src/car_maintenance_lib.cpp" coveredlines="485" coverablelines="485" totallines="874" coveredbranches="587" totalbranches="990" coveredcodeelements="20" totalcodeelements="20" />
+    <class name="/mnt/c/Users/hikme/Desktop/Git/ce103-final-hikmethan-kolay-yagizemre-ozbilge-cpp/src/tests/car_maintenance/car_maintenance.cpp" coveredlines="206" coverablelines="206" totallines="449" coveredbranches="330" totalbranches="966" coveredcodeelements="54" totalcodeelements="207" />
+  </assembly>
+</coverage>
